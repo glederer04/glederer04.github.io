@@ -6,90 +6,100 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #e3e3e3; /* Set the background color */
+            background-color: #e3e3e3;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        nav {
-            /* Your existing styles for the navigation bar */
-        }
-
         .container {
             max-width: 800px;
-            margin: 0; /* Remove margin to align with the top */
-            text-align: left; /* Align everything to the left */
-            padding: 5px; /* Add padding to the container */
+            margin: 20px auto;
+            text-align: center;
         }
 
-        .blurb {
-            background-color: transparent;
-            border-radius: 8px;
-            box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        .profile {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align items to the left */
-            padding: 0px;
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        p {
-            margin-bottom: 5px;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         img {
-            border-radius: 50%; /* Make the image circular */
-            max-width: 100%; /* Make sure the image doesn't exceed its container */
-            margin-bottom: 10px;
+            border-radius: 50%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .contact-icons img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
         }
 
         footer {
-            margin-top: 5px;
-            background-color: #e3e3e3;
-            color: transparent;
-            padding: 5px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            margin-bottom: 10px; /* Add space between each link */
-        }
-
-        a {
-            color: #0000FF;
-            text-decoration: underlined;
-            background-color: transparent; /* Remove background color */
-            padding: 0; /* Remove padding */
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <!-- Your existing navigation code -->
-    </nav>
     <div class="container">
-        <div class="blurb">
-            <img src="https://pbs.twimg.com/media/GDHNwQvXwAA9S14?format=jpg&name=medium" alt="" width="150" height="150">
-            <h1>Gregory Lederer</h1>
-            <p>Basketball Analytics.</p>
-        </div><!-- /.blurb -->
-    </div><!-- /.container -->
+        <div class="profile">
+            <img src="https://pbs.twimg.com/media/GDHNwQvXwAA9S14?format=jpg&name=medium" alt="Gregory Lederer" width="150" height="150">
+            <h1>Your Name</h1>
+            <p>Web Developer</p>
+            <div class="contact-icons">
+                <a href="mailto:gregoryled@yahoo.com">
+                    <img src="https://assets.stickpng.com/images/584856b4e0bb315b0f7675ac.png" alt="Personal Email">
+                    Personal Email
+                </a>
+                <a href="mailto:glederer@umass.edu">
+                    <img src="https://assets.stickpng.com/images/584856b4e0bb315b0f7675ac.png" alt="School Email">
+                    School Email
+                </a>
+                <a href="https://www.linkedin.com/in/gregorylederer/">
+                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/glederer04">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </div>
     <footer>
-        <ul>
-            <li><a href="mailto:gregoryled@yahoo.com">Personal Email</a></li>
-            <li><a href="mailto:glederer@umass.edu">School Email</a></li>
-            <li><a href="https://www.linkedin.com/in/gregorylederer/">LinkedIn</a></li>
-            <li><a href="https://github.com/glederer04">GitHub</a></li>
-        </ul>
+        <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
 </body>
 </html>
