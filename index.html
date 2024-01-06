@@ -10,12 +10,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            display: flex;
         }
 
         .container {
             width: 250px; /* Adjusted width */
             margin: 20px 20px 20px 0; /* Adjusted margin */
             text-align: left;
+            position: fixed; /* Keep the container fixed */
         }
 
         .profile {
@@ -72,6 +74,11 @@
             text-decoration: underline; /* Underline on hover */
         }
 
+        .homepage-content {
+            flex: 1;
+            padding: 20px;
+        }
+
         footer {
             margin-top: 20px;
             background-color: #333;
@@ -112,6 +119,11 @@
                 </a>
             </div>
         </div>
+    </div>
+    <div class="homepage-content">
+        <h2>Welcome to My Homepage</h2>
+        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+        <!-- You can add more content here, including text and images -->
     </div>
     <footer>
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
