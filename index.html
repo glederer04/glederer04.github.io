@@ -167,5 +167,20 @@
     <footer>
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var tabId = this.getAttribute('href').substring(1);
+                    var contents = document.querySelectorAll('.content');
+                    contents.forEach(function(content) {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById(tabId).style.display = 'block';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
