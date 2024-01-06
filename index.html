@@ -38,7 +38,7 @@
 
         .container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Updated to row */
             align-items: flex-start;
             margin: 20px 20px 20px 0; /* Adjusted margin */
             text-align: left;
@@ -50,6 +50,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
             text-align: left;
+            margin-right: 20px; /* Added margin-right */
         }
 
         img {
@@ -160,38 +161,39 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="homepage-content" id="home">
-        <h2>Welcome to My Homepage</h2>
-        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
-        <!-- You can add more content here, including text and images -->
-    </div>
-    <div class="about-content" id="about">
-        <h2>Welcome to My About</h2>
-        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
-        <!-- You can add more content here, including text and images -->
-    </div>
-    <div class="projects-content" id="projects">
-        <h2>Welcome to My Projects</h2>
-        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
-        <!-- You can add more content here, including text and images -->
-    </div>
-    <div class="contact-content" id="contact">
-        <h2>Welcome to My Contact</h2>
-        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
-        <!-- You can add more content here, including text and images -->
+        <div class="homepage-content" id="home">
+            <h2>Welcome to My Homepage</h2>
+            <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+            <!-- You can add more content here, including text and images -->
+        </div>
+        <div class="about-content" id="about">
+            <h2>Welcome to My About</h2>
+            <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+            <!-- You can add more content here, including text and images -->
+        </div>
+        <div class="projects-content" id="projects">
+            <h2>Welcome to My Projects</h2>
+            <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+            <!-- You can add more content here, including text and images -->
+        </div>
+        <div class="contact-content" id="contact">
+            <h2>Welcome to My Contact</h2>
+            <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+            <!-- You can add more content here, including text and images -->
+        </div>
     </div>
     <footer>
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var tabs = document.querySelectorAll('.tab');
-            tabs.forEach(function(tab) {
-                tab.addEventListener('click', function() {
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function (event) {
+                    event.preventDefault();
                     var tabId = this.getAttribute('href').substring(1);
                     var contents = document.querySelectorAll('.homepage-content, .about-content, .projects-content, .contact-content');
-                    contents.forEach(function(content) {
+                    contents.forEach(function (content) {
                         content.style.display = 'none';
                     });
                     document.getElementById(tabId).style.display = 'block';
