@@ -164,23 +164,23 @@
         <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
         <!-- You can add more content here, including text and images -->
     </div>
+    <div class="homepage-content" id="about">
+        <h2>Welcome to My About</h2>
+        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+        <!-- You can add more content here, including text and images -->
+    </div>
+    <div class="homepage-content" id="projects">
+        <h2>Welcome to My Projects</h2>
+        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+        <!-- You can add more content here, including text and images -->
+    </div>
+    <div class="homepage-content" id="contact">
+        <h2>Welcome to My Contact</h2>
+        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+        <!-- You can add more content here, including text and images -->
+    </div>
     <footer>
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var tabs = document.querySelectorAll('.tab');
-            tabs.forEach(function(tab) {
-                tab.addEventListener('click', function() {
-                    var tabId = this.getAttribute('href').substring(1);
-                    var contents = document.querySelectorAll('.content');
-                    contents.forEach(function(content) {
-                        content.style.display = 'none';
-                    });
-                    document.getElementById(tabId).style.display = 'block';
-                });
-            });
-        });
-    </script>
 </body>
 </html>
