@@ -10,14 +10,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            display: flex;
         }
 
         .container {
-            width: 250px; /* Adjusted width */
-            margin: 20px 20px 20px 0; /* Adjusted margin */
-            text-align: left;
-            position: fixed; /* Keep the container fixed */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .profile {
@@ -26,6 +24,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
             text-align: left;
+            margin-bottom: 20px;
         }
 
         img {
@@ -41,46 +40,62 @@
         }
 
         p {
-            margin-bottom: 5px; /* Decreased margin */
+            margin-bottom: 5px;
         }
 
         .additional-info {
             text-align: left;
+            margin-bottom: 10px;
         }
 
         .additional-info img {
-            width: 25px; /* Adjusted size */
-            height: 25px; /* Adjusted size */
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
             vertical-align: middle;
         }
 
         .contact-icons a img {
-            width: 25px; /* Adjusted size */
-            height: 25px; /* Adjusted size */
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
             vertical-align: middle;
         }
 
         .contact-icons a {
             display: block;
-            margin-bottom: 5px; /* Increased margin */
+            margin-bottom: 5px;
             text-decoration: none;
             color: #000000;
-            transition: text-decoration 0.3s; /* Added transition */
+            transition: text-decoration 0.3s;
         }
 
         .contact-icons a:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            margin-right: 20px;
+            font-size: 18px;
+            cursor: pointer;
         }
 
         .homepage-content {
-            flex: 1;
+            max-width: 600px;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         footer {
-            margin-top: 20px;
+            margin-top: auto;
             background-color: #333;
             color: #fff;
             padding: 10px;
@@ -119,14 +134,31 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="homepage-content">
-        <h2>Welcome to My Homepage</h2>
-        <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
-        <!-- You can add more content here, including text and images -->
+        <div class="tabs">
+            <div class="tab" onclick="showTab('home')">Home</div>
+            <div class="tab" onclick="showTab('about')">About</div>
+            <div class="tab" onclick="showTab('projects')">Projects</div>
+            <div class="tab" onclick="showTab('contact')">Contact</div>
+        </div>
+        <div class="homepage-content" id="home">
+            <h2>Welcome to My Homepage</h2>
+            <p>This is the place where I share my thoughts and experiences. Feel free to explore!</p>
+            <!-- You can add more content here, including text and images -->
+        </div>
+        <!-- Other tab content goes here -->
     </div>
     <footer>
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.homepage-content').forEach(tab => tab.style.display = 'none');
+            
+            // Show the selected tab
+            document.getElementById(tabId).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
