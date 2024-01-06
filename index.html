@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
         }
 
         .container {
@@ -79,14 +79,14 @@
         }
 
         .tabs {
-            display: flex;
             background-color: #333;
+            display: flex;
             padding: 10px;
             width: 100%;
+            justify-content: space-around;
         }
 
         .tab {
-            margin-right: 10px;
             font-size: 18px;
             cursor: pointer;
             color: #fff;
@@ -120,6 +120,12 @@
     </style>
 </head>
 <body>
+    <div class="tabs">
+        <a class="tab" href="#home">Home</a>
+        <a class="tab" href="#about">About</a>
+        <a class="tab" href="#projects">Projects</a>
+        <a class="tab" href="#contact">Contact</a>
+    </div>
     <div class="container">
         <div class="profile">
             <img src="https://pbs.twimg.com/media/GDHNwQvXwAA9S14?format=jpg&name=medium" alt="Gregory Lederer" width="150" height="150">
@@ -150,12 +156,6 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="tabs">
-        <a class="tab" href="#home">Home</a>
-        <a class="tab" href="#about">About</a>
-        <a class="tab" href="#projects">Projects</a>
-        <a class="tab" href="#contact">Contact</a>
     </div>
     <div class="homepage-content" id="home">
         <h2>Welcome to My Homepage</h2>
