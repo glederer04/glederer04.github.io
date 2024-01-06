@@ -37,11 +37,13 @@
         }
 
         .container {
-            display: flex;
-            flex-direction: row; /* Updated to row */
-            align-items: flex-start;
-            margin: 20px 20px 20px 0; /* Adjusted margin */
+            position: fixed; /* Add this line to make it fixed */
+            top: 20px; /* Adjust the top position as needed */
+            left: 20px; /* Adjust the left position as needed */
+            width: 250px; /* Adjusted width */
+            margin: 20px 0; /* Adjusted margin */
             text-align: left;
+            z-index: 1; /* Add this line to ensure it stays on top of other elements */
         }
 
         .profile {
