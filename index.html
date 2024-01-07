@@ -211,7 +211,7 @@
                 tab.addEventListener('click', function (event) {
                     event.preventDefault();
                     var tabId = this.getAttribute('href').substring(1);
-                    var contents = document.querySelectorAll('.homepage-content, .about-content, .projects-content, .contact-content');
+                    var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content');
                     contents.forEach(function (content) {
                         content.style.display = 'none';
                     });
