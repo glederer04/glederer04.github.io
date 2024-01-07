@@ -120,8 +120,18 @@
         .portfolio-content .portfolio-image {
             width: 1000px;
             height: 120px;
-            background-size: cover; /* Adjust this based on your preference */
+            background-size: cover;
             background-position: center;
+            border-radius: 8px; /* Added border-radius for rounded corners */
+        }
+        /* Style the hyperlink color */
+        .portfolio-content .portfolio a {
+            color: #000;
+            text-decoration: none;
+        }
+        /* Change color on hover for better user experience */
+        .portfolio-content .portfolio a:hover {
+            color: #333;
         }
 
         footer {
@@ -200,15 +210,18 @@
             <h2><a href="https://www.mccormackstudentleaders.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">McCormack Student Leaders Club</a></h2>
             <p>Since arriving at UMass, I've actively participated in the McCormack Sport Leaders, a student-run sport management organization committed to fostering experiential learning and helping students excel in the field. Within this dynamic group, we sponsor tournaments, organize sporting events, and host guest speakers each semester, creating unique opportunities for students to interact with faculty and gain real-world experience in the sports industry. Being part of McCormack Sport Leaders has not only enhanced my understanding of sport management but also provided invaluable hands-on experiences and networking opportunities that complement my academic pursuits.</p>
             <!-- You can add more content here, including text and images -->
-        </div class="portfolio">
+        </div>
         <div class="portfolio-content" id="portfolio">
-            <div>
+            <div class="portfolio">
                 <h2><a href="https://gregorylederer.shinyapps.io/UMassPractice23-24/" target="_blank">UMass Basketball Practice Website</a></h2>
                 <br>
-                <!-- Image for Project 1 -->
-                <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/F-NNaSUXkAAfv0K?format=jpg&name=large');"></div>
+                <!-- Wrapped the content in an anchor tag -->
+                <a href="https://gregorylederer.shinyapps.io/UMassPractice23-24/" target="_blank">
+                    <!-- Image for Project 1 -->
+                    <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/F-NNaSUXkAAfv0K?format=jpg&name=large');"></div>
+                </a>
             </div>
-            <!-- You can add more content here, including text and images -->
+    <!-- You can add more content here, including text and images -->
         </div>
         <div class="resume-content" id="resume">
             <h2>Resume</h2>
