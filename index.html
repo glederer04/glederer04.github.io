@@ -102,6 +102,7 @@
 
         .homepage-content,
         .portfolio-content,
+        .visual-content,
         .resume-content{
             max-width: 1000px;
             width: 100%;
@@ -127,7 +128,13 @@
             border-radius: 8px; /* Added border-radius for rounded corners */
         }
 
-        .portfolio-content .portfolio-image-two {
+        .visual-content .visual {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .visual-content .visual-image {
             max-width: 100%;
             height: auto;
             border-radius: 8px; /* Added border-radius for rounded corners */
@@ -157,6 +164,7 @@
     <div class="tabs">
         <a class="tab" href="#home">Home</a>
         <a class="tab" href="#portfolio">Portfolio</a>
+        <a class="tab" href="#visual">Sample Visuals</a>
         <a class="tab" href="#resume">Resume</a>
     </div>
     <div class="container">
@@ -227,12 +235,15 @@
                     <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/F-NNaSUXkAAfv0K?format=jpg&name=large');"></div>
                 </a>
                 <p>The first time UMass has used a user interface to visualize and store all practice data. Everything seen on the website has been coded and creating using R Markdown and Shiny Apps. This website is continuously being added to as it is a work in progress.</p>
-
-                <h2>Sample Visuals</h2>
-                <img src="https://pbs.twimg.com/media/GDWfG6VWYAASdMa?format=jpg&name=small" alt="Visual 1" class="portfolio-image-two">
-                <img src="https://pbs.twimg.com/media/GDWfG6TXkAAW3X_?format=jpg&name=medium" alt="Visual 2" class="portfolio-image-two">
-                <img src="https://pbs.twimg.com/media/GDWfG6TXsAEKVQj?format=jpg&name=large" alt="Visual 3" class="portfolio-image-two">
-                <img src="https://pbs.twimg.com/media/GDWfG6UXsAMamgV?format=jpg&name=small" alt="Visual 4" class="portfolio-image-two">
+            </div>
+        </div>
+        <div class="visual-content" id="visual">
+            <div class="visual">
+                <h2>Sample Visualizations</h2>
+                <img src="https://pbs.twimg.com/media/GDWfG6VWYAASdMa?format=jpg&name=small" alt="Visual 1" class="visual-image">
+                <img src="https://pbs.twimg.com/media/GDWfG6TXkAAW3X_?format=jpg&name=medium" alt="Visual 2" class="visual-image">
+                <img src="https://pbs.twimg.com/media/GDWfG6TXsAEKVQj?format=jpg&name=large" alt="Visual 3" class="visual-image">
+                <img src="https://pbs.twimg.com/media/GDWfG6UXsAMamgV?format=jpg&name=small" alt="Visual 4" class="visual-image">
             </div>
         </div>
         <div class="resume-content" id="resume">
