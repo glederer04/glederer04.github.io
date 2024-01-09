@@ -207,7 +207,7 @@
                 </a>
             </div>
         </div>
-        <div class="homepage-content" id="home">
+        <div class="homepage-content tab-content" id="home">
             <h2 style="font-size: 32px; text-decoration: underline;">About Me</h2>
             <p>I am currently a Sophomore Honors student at the University of Massachusetts Amherst pursuing a double major in Mathematics, concentrating in Statistics & Data Science, and Sport Management. My interests include combining my strengths in Data Analytics and Visualization with my love for the game of Basketball.</p>
 
@@ -238,7 +238,7 @@
             <p>Since arriving at UMass, I've actively participated in the McCormack Sport Leaders, a student-run sport management organization committed to fostering experiential learning and helping students excel in the field. Within this dynamic group, we sponsor tournaments, organize sporting events, and host guest speakers each semester, creating unique opportunities for students to interact with faculty and gain real-world experience in the sports industry. Being part of McCormack Sport Leaders has not only enhanced my understanding of sport management but also provided invaluable hands-on experiences and networking opportunities that complement my academic pursuits.</p>
             <!-- You can add more content here, including text and images -->
         </div>
-        <div class="portfolio-content" id="portfolio">
+        <div class="portfolio-content tab-content" id="portfolio">
             <div class="portfolio">
                 <h2><a href="https://gregorylederer.shinyapps.io/UMassPractice23-24/" target="_blank">UMass Basketball Practice Website</a></h2>
                 <a href="https://gregorylederer.shinyapps.io/UMassPractice23-24/" target="_blank">
@@ -247,7 +247,7 @@
                 <p>The first time UMass has used a user interface to visualize and store all practice data. Everything seen on the website has been coded and creating using R Markdown and Shiny Apps. This website is continuously being added to as it is a work in progress.</p>
             </div>
         </div>
-        <div class="visual-content" id="visual">
+        <div class="visual-content tab-content" id="visual">
             <div class="visual">
                 <h2 style="margin-right: 300px;">Sample Visualizations provided for UMass Basketball</h2>
 
@@ -267,7 +267,7 @@
                 <img src="https://pbs.twimg.com/media/GDWfL38WsAA1Rcn?format=png&name=900x900" alt="Visual 10" class="visual-image">
             </div>
         </div>
-        <div class="resume-content" id="resume">
+        <div class="resume-content tab-content" id="resume">
             <h2>Resume</h2>
             <iframe src="Lederer Resume.pdf" width="100%" height="600px" style="border: none;"></iframe>
             <!-- You can add more content here, including text and images -->
@@ -283,18 +283,13 @@
                 tab.addEventListener('click', function (event) {
                     event.preventDefault();
                     var tabId = this.getAttribute('href').substring(1);
-                    var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content');
+                    var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
                     contents.forEach(function (content) {
                         content.style.display = 'none';
                     });
                     document.getElementById(tabId).style.display = 'block';
                 });
             });
-        });
-    </script>
-    <script>
-        // Add this script to automatically navigate to the home section on page load
-        document.addEventListener('DOMContentLoaded', function() {
             window.location.hash = 'home';
         });
     </script>
