@@ -244,6 +244,16 @@
                     <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/F-NNaSUXkAAfv0K?format=jpg&name=large');"></div>
                 </a>
                 <p>UMass has recently introduced a user-friendly interface, marking the first time the university has utilized such a tool to visualize and store all practice data. The entire website, featuring meticulously coded content crafted using R Markdown and Shiny Apps, is a testament to individual initiative and effort. This ongoing project is a work in progress, continually expanding and improving.</p>
+                
+                <div class="dropdown">
+                    <h2 style="cursor: pointer;" onclick="toggleDropdown('pdfDropdown')">Sample Projects</h2>
+                    <div id="pdfDropdown" class="dropdown-content">
+                        <p><a href="Same Pre-Game Report.pdf" target="_blank">Sample Pre-Game Report</a></p>
+                        <p><a href="Individual Practice Reports.pdf" target="_blank">Individual Practice Reports</a></p>
+                        <p><a href="Out of Conference Report.pdf" target="_blank">Out of Conference Report</a></p>
+                        <p><a href="Game vs Practice Progress.pdf" target="_blank">Game vs. Practice Progress</a></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="visual-content tab-content" id="visual">
@@ -294,6 +304,15 @@
             });
             window.location.hash = 'home';
         });
+        
+        function toggleDropdown(dropdownId) {
+            var dropdownContent = document.getElementById(dropdownId);
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        }
     </script>
 </body>
 </html>
