@@ -289,30 +289,31 @@
         <p>&copy; 2024 Gregory Lederer. All rights reserved.</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var tabs = document.querySelectorAll('.tab');
-            tabs.forEach(function (tab) {
-                tab.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    var tabId = this.getAttribute('href').substring(1);
-                    var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
-                    contents.forEach(function (content) {
-                        content.style.display = 'none';
-                    });
-                    document.getElementById(tabId).style.display = 'block';
+    document.addEventListener('DOMContentLoaded', function () {
+        var tabs = document.querySelectorAll('.tab');
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function (event) {
+                event.preventDefault();
+                var tabId = this.getAttribute('href').substring(1);
+                var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
+                contents.forEach(function (content) {
+                    content.style.display = 'none';
                 });
+                document.getElementById(tabId).style.display = 'block';
             });
-            window.location.hash = 'home';
         });
-        
-        function toggleDropdown(dropdownId) {
-            var dropdownContent = document.getElementById(dropdownId);
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
+        window.location.hash = 'home';
+    });
+
+    function toggleDropdown(dropdownId) {
+        var dropdownContent = document.getElementById(dropdownId);
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
