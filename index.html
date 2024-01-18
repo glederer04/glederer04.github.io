@@ -166,6 +166,45 @@
             text-align: center;
             width: 100%;
         }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-title {
+            cursor: pointer;
+            border-bottom: 1px dashed #333;
+            display: inline-block;
+            padding-right: 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content p {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .dropdown-content a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .dropdown-content a:hover {
+            text-decoration: underline;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
     </style>
 </head>
 <body>
@@ -246,14 +285,15 @@
                 <p>UMass has recently introduced a user-friendly interface, marking the first time the university has utilized such a tool to visualize and store all practice data. The entire website, featuring meticulously coded content crafted using R Markdown and Shiny Apps, is a testament to individual initiative and effort. This ongoing project is a work in progress, continually expanding and improving.</p>
                 
                 <div class="dropdown">
-                    <h2 style="cursor: pointer;" onclick="toggleDropdown('pdfDropdown')">Sample Projects</h2>
+                    <h2 class="dropdown-title" onclick="toggleDropdown('pdfDropdown')">&#9662; Sample Projects</h2>
                     <div id="pdfDropdown" class="dropdown-content">
-                        <p><a href="Sample Pre-Game Report.pdf" target="_blank">Sample Pre-Game Report</a></p>
+                        <p><a href="Same Pre-Game Report.pdf" target="_blank">Sample Pre-Game Report</a></p>
                         <p><a href="Individual Practice Reports.pdf" target="_blank">Individual Practice Reports</a></p>
                         <p><a href="Out of Conference Report.pdf" target="_blank">Out of Conference Report</a></p>
                         <p><a href="Game vs Practice Progress.pdf" target="_blank">Game vs. Practice Progress</a></p>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="visual-content tab-content" id="visual">
