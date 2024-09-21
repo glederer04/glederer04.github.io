@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
+        .sample-visuals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .sample-visuals a {
+            width: calc(33.33% - 10px);
+            text-align: center;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sample-visuals a:hover {
+            background-color: #e0e0e0;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f5f5f5;
@@ -313,6 +335,16 @@
                 </a>
                 <p>During the 2023-24 season UMass introduced a user-friendly interface, marking the first time the university has utilized such a tool to visualize and store all practice data. The entire website, featuring meticulously coded content crafted using R Markdown and Shiny Apps, is a testament to individual initiative and effort.</p>
 
+                <h3>Sample Visuals</h3>
+                <div class="sample-visuals">
+                    <a href="ReportCards.pdf" target="_blank">Report Cards</a>
+                    <a href="Plots.pdf" target="_blank">Plots</a>
+                    <a href="Radars.pdf" target="_blank">Radars</a>
+                    <a href="Lineups.pdf" target="_blank">Lineups</a>
+                    <a href="FourFactors.pdf" target="_blank">Four Factors</a>
+                    <a href="Dumbbells.pdf" target="_blank">Dumbbells</a>
+                </div>
+                
                 <div class="additional-images">
                     <a href="https://gregorylederer.shinyapps.io/IonaScrimmage/" target="_blank">
                         <div class="portfolio-image left" style="background-image: url('https://pbs.twimg.com/media/GNWGl_oXEAAgkLX?format=png&name=small'); width: 550px; height: 200px;"></div>
