@@ -232,6 +232,37 @@
         .portfolio-image.right {
             float: right;
         }
+
+        .sample-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .sample-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sample-buttons a {
+            flex: 1 1 18%; /* Adjusts button width for each row */
+            text-align: center;
+            text-decoration: none;
+            padding: 20px;
+            background-color: #e3e3e3;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sample-buttons a:hover {
+            background-color: #e0e0e0;
+        }
    
     </style>
 </head>
@@ -336,32 +367,38 @@
                 <p>During the 2023-24 season UMass introduced a user-friendly interface, marking the first time the university has utilized such a tool to visualize and store all practice data. The entire website, featuring meticulously coded content crafted using R Markdown and Shiny Apps, is a testament to individual initiative and effort.</p>
 
                 <h2>Sample Visuals</h2>
-                <div class="sample-visuals">
-                    <a href="Sample_ExhibitionReport.png" target="_blank">Scrimmage Recap</a>
-                    <a href="ReportCards.pdf" target="_blank">Report Cards</a>
-                    <a href="Plots.pdf" target="_blank">Plots</a>
-                    <a href="Radars.pdf" target="_blank">Radars</a>
-                    <a href="Lineups.pdf" target="_blank">Lineups</a>
-                    <a href="FourFactors.pdf" target="_blank">Four Factors</a>
-                    <a href="Dumbbells.pdf" target="_blank">Dumbbells</a>
+                <div class="sample-section">
+                    <div class="sample-buttons">
+                        <a href="Sample_ExhibitionReport.png" target="_blank">Scrimmage Recap</a>
+                        <a href="ReportCards.pdf" target="_blank">Report Cards</a>
+                        <a href="Plots.pdf" target="_blank">Plots</a>
+                        <a href="Radars.pdf" target="_blank">Radars</a>
+                        <a href="Lineups.pdf" target="_blank">Lineups</a>
+                        <a href="FourFactors.pdf" target="_blank">Four Factors</a>
+                        <a href="Dumbbells.pdf" target="_blank">Dumbbells</a>
+                    </div>
                 </div>
 
                 <h2>Sample Projects</h2>
-                <div class="sample-visuals">
-                    <a href="HM_1Page.pdf" target="_blank">High-Major 1 Page Scout</a>
-                    <a href="Mid-Major_1Page.pdf" target="_blank">Mid-Major 1 Page Scout</a>
-                    <a href="Sample Pre-Game Report.pdf" target="_blank">Pre-Game Report</a>
-                    <a href="Lineup Report.pdf" target="_blank">Lineup Report</a>
-                    <a href="Individual Practice Reports.pdf" target="_blank">Sample Practice Reports</a>
-                    <a href="Out of Conference Report.pdf" target="_blank">Out of Conference Report</a>
-                    <a href="Game vs Practice Progress.pdf" target="_blank">Game vs. Practice Progress</a>
-                    <a href="12:13 Tournament Seed Projections.pdf" target="_blank">A10 Tournament Seed Projections</a>
+                <div class="sample-section">
+                    <div class="sample-buttons">
+                        <a href="HM_1Page.pdf" target="_blank">High-Major 1 Page Scout</a>
+                        <a href="Mid-Major_1Page.pdf" target="_blank">Mid-Major 1 Page Scout</a>
+                        <a href="Sample Pre-Game Report.pdf" target="_blank">Pre-Game Report</a>
+                        <a href="Lineup Report.pdf" target="_blank">Lineup Report</a>
+                        <a href="Individual Practice Reports.pdf" target="_blank">Sample Practice Reports</a>
+                        <a href="Out of Conference Report.pdf" target="_blank">Out of Conference Report</a>
+                        <a href="Game vs Practice Progress.pdf" target="_blank">Game vs. Practice Progress</a>
+                        <a href="12:13 Tournament Seed Projections.pdf" target="_blank">A10 Tournament Seed Projections</a>
+                    </div>
                 </div>
 
                 <h2>Certificates</h2>
-                <div class="sample-visuals">
-                    <a href="DataAnalysis_Certificate.pdf" target="_blank">Data Analysis</a>
-                    <a href="BusinessAnalysis_Certificate.pdf" target="_blank">Business Analysis</a>
+                <div class="sample-section">
+                    <div class="sample-buttons">
+                        <a href="DataAnalysis_Certificate.pdf" target="_blank">Data Analysis</a>
+                        <a href="BusinessAnalysis_Certificate.pdf" target="_blank">Business Analysis</a>
+                    </div>
                 </div>
 
             </div>
