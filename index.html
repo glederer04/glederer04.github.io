@@ -38,11 +38,13 @@
         }
 
         .tabs {
-            background-color: #333;
+            position: relative;
             display: flex;
+            align-items: center;
+            justify-content: center; /* still center the tab group */
             padding: 15px;
+            background-color: #333;
             width: 100%;
-            justify-content: left;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -314,24 +316,30 @@
         }
 
         .gl-initials {
+            position: absolute;
+            left: 20px;
             font-family: 'Georgia', serif;
-            font-size: 26px;
-            color: #666; /* Lightened version of the tab bar color */
-            margin-right: auto;
-            align-self: center;
-            padding-left: 15px;
+            font-size: 20px;
+            color: #666;
             opacity: 0.8;
             pointer-events: none;
         }
 
+        .tab-group {
+            display: flex;
+            gap: 20px;
+        }
+        
     </style>
 </head>
 <body>
     <div class="tabs">
         <div class="gl-initials">GL</div>
-        <a class="tab" href="#home">Home</a>
-        <a class="tab" href="#portfolio">Portfolio</a>
-        <a class="tab" href="#resume">Resume</a>
+        <div class="tab-group">
+            <a class="tab" href="#home">Home</a>
+            <a class="tab" href="#portfolio">Portfolio</a>
+            <a class="tab" href="#resume">Resume</a>
+        </div>
     </div>
     <div class="container">
         <div class="profile">
