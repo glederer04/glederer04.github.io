@@ -377,7 +377,20 @@
             margin: 0;
             color: #333;
         }
-        
+
+        .project-link {
+            font-size: 16px;
+            font-weight: bold;
+            color: #004080;
+            text-decoration: underline;
+            text-align: center;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #0066cc;
+        }
+
     </style>
 </head>
 <body>
@@ -613,7 +626,9 @@
           <div class="project-grid">
             <div class="project-tile">
               <iframe src="PG_Salary_Discrepancy.html"></iframe>
-              <h3>NBA Point Guard Salary Evaluation - Part 1</h3>
+              <a href="PG_Salary_Discrepancy.html" target="_blank" class="project-link" title="Click to open full screen">
+                PG Salaries – Part 1 <span style="font-size: 0.85em;">(Click to view full screen)</span>
+                </a>
             </div>
           </div>
         </div>
