@@ -193,7 +193,7 @@
         }
 
         .dropdown-content {
-            display: none;
+            display: none; /* Keep hidden by default */
             position: absolute;
             background-color: #f9f9f9;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -203,8 +203,7 @@
             min-width: 160px;
             border-radius: 6px;
             padding: 10px 0;
-            display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Only needed when display is flex */
             align-items: center;
         }
 
@@ -228,7 +227,9 @@
         }
 
         .dropdown:hover .dropdown-content {
-            display: block;
+            display: flex; /* now flex ONLY when hovered */
+            flex-direction: column;
+            align-items: center;
         }
 
         .additional-images {
