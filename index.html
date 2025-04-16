@@ -611,6 +611,13 @@
                 content.style.display = expanded ? 'block' : 'none';
             });
         });
+        function switchTab(tabId) {
+            var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
+            contents.forEach(function (content) {
+                content.style.display = 'none';
+            });
+            document.getElementById(tabId).style.display = 'block';
+        }
 </script>
 
 </body>
