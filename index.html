@@ -392,6 +392,31 @@
             color: #0066cc;
         }
 
+        /* Featured hero link */
+        .featured-hero {
+          display: flex;
+          justify-content: center;
+          margin: 15px 0 10px;
+        }
+        .hero-link {
+          display: inline-block;
+          border-radius: 8px;
+          transition: box-shadow 0.25s ease, transform 0.2s ease;
+        }
+        .hero-image {
+          width: 1000px;         /* same dimensions as your portfolio tiles */
+          max-width: 100%;
+          height: 120px;
+          border-radius: 8px;
+          background-image: url('https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large');
+          background-size: cover;
+          background-position: center;
+        }
+        .hero-link:hover {
+          box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+          transform: translateY(-1px);
+        }
+
     </style>
 </head>
 <body>
@@ -448,9 +473,11 @@
             <p style="margin-top: -10px;">A few featured items that offer a quick snapshot of the work I do in basketball analytics, reporting, and data storytelling.</p>
             <p style="text-align: center; margin-top: 15px;">
               <span style="font-size: 0.9em; color: #444;">Click here for a link to a demo UNC WBB Practice Shiny App</span>
-                <a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">
-                    <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large'); align-items: center;"></div>
-                </a>
+                <div class="featured-hero">
+                  <a class="hero-link" href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank" aria-label="Open demo UNC WBB Practice Shiny App">
+                    <div class="hero-image"></div>
+                  </a>
+                </div>
             </p>
             <div class="project-grid" style="margin-top: 15px;">
               <div class="project-tile">
