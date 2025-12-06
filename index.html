@@ -156,11 +156,12 @@
         }
 
         .portfolio-content .portfolio-image {
-            width: 1000px;
-            height: 120px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px; /* Added border-radius for rounded corners */
+            width: 100%;
+            height: auto;
+            max-height: 180px;    /* optional */
+            border-radius: 8px;
+            display: block;
+            object-fit: cover;
         }
         /* Style the hyperlink color */
         .portfolio-content .portfolio a {
@@ -236,13 +237,6 @@
         .additional-images {
             display: flex;
             justify-content: space-between;
-        }
-
-        .portfolio-image {
-            width: 100%; /* Adjust width as needed */
-            height: auto; /* Adjust height as needed */
-            background-size: cover;
-            background-position: center;
         }
 
         .portfolio-image.left {
@@ -404,7 +398,7 @@
           transition: box-shadow 0.25s ease, transform 0.2s ease;
         }
         .hero-image {
-          width: 1000px;         /* same dimensions as your portfolio tiles */
+          width: 100%;         /* same dimensions as your portfolio tiles */
           max-width: 100%;
           height: 120px;
           border-radius: 8px;
@@ -581,10 +575,9 @@
     }
 
     /* Kill horizontal scroll: override fixed-width images */
-    .portfolio-content .portfolio-image,
-    .hero-image {
+    .portfolio-content .portfolio-image {
         width: 100%;
-        height: 140px;   /* or 120px if you want it shorter */
+        height: 140px;
         background-size: cover;
         background-position: center;
     }
@@ -674,8 +667,13 @@
             <p style="text-align: center; margin-top: 15px;">
               <span style="font-size: 0.9em; color: #444;">Click the image below for a link to a demo UNC WBB Practice Shiny App</span>
                 <div class="featured-hero">
-                  <a class="hero-link" href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank" aria-label="Open demo UNC WBB Practice Shiny App">
-                    <div class="hero-image"></div>
+                    <a class="hero-link"
+                     href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/"
+                     target="_blank"
+                     aria-label="Open demo UNC WBB Practice Shiny App">
+                    <img class="hero-image"
+                         src="https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large"
+                         alt="UNC WBB Practice Website preview">
                   </a>
                 </div>
             </p>
@@ -859,7 +857,9 @@
             <div class="portfolio">
                 <h2 style="margin-right: 500px;"><a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">UNC WBB Practice Website</a></h2>
                 <a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">
-                    <div class="portfolio-image" style="background-image: url('https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large');"></div>
+                    <img class="portfolio-image"
+                         src="https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large"
+                         alt="UNC WBB Practice Website preview">
                 </a>
                 <p>Explore a demo of the practice website I created for UNC Women’s Basketball, designed to streamline team data and deliver insightful visualizations. This interactive platform, built with Shiny, allows coaches to access practice stats, player performance metrics, and trends with ease, supporting strategic decision-making.</p>
 
