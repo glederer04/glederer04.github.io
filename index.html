@@ -429,7 +429,11 @@
           transform: translateY(-1px);
         }
 
-/* ---- MOBILE LAYOUT (no desktop changes) ---- */
+.profile-toggle,
+.menu-toggle {
+    display: none;
+}
+        
 @media (max-width: 768px) {
 
     /* Body & main layout stack vertically */
@@ -446,33 +450,36 @@
     .tabs {
         justify-content: center;
         padding: 10px 45px; /* space for icons on left/right */
+        box-sizing: border-box; /* prevents extra horizontal overflow */
     }
 
-    /* Hide GL initials on small screens if you want it cleaner */
+    /* Hide GL initials on small screens */
     .gl-initials {
         display: none;
     }
 
-    /* Profile & menu buttons only visible on mobile */
+    /* Profile & menu buttons – MOBILE ONLY (bigger & tappable) */
     .profile-toggle,
     .menu-toggle {
+        display: block;                 /* override desktop hide */
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: none;
+        background-color: transparent;
         border: none;
-        font-size: 22px;
+        font-size: 28px;                /* bigger icon */
         cursor: pointer;
         color: #fff;
-        padding: 4px 6px;
+        padding: 8px 12px;              /* bigger tap area */
+        line-height: 1;
     }
 
     .profile-toggle {
-        left: 10px;
+        left: 8px;
     }
 
     .menu-toggle {
-        right: 10px;
+        right: 8px;
     }
 
     /* Default: hide the tab links on mobile (use burger to show) */
@@ -528,7 +535,7 @@
         text-align: left;
     }
 
-    /* PROFILE: turn into slide-in panel instead of sticky left card */
+    /* PROFILE: slide-in panel */
     .profile {
         position: fixed;
         top: 0;
@@ -545,12 +552,11 @@
         overflow-y: auto;
     }
 
-    /* When opened via button */
     .profile.profile-open {
         transform: translateX(0);
     }
 
-    /* Give main content full width since profile is hidden by default */
+    /* Make content fluid on mobile */
     .homepage-content,
     .portfolio-content,
     .resume-content {
@@ -559,7 +565,13 @@
         margin: 10px 0 20px 0;
     }
 
-    /* Project tiles: full-width on very small screens */
+    /* Kill horizontal scroll: override fixed-width images */
+    .portfolio-content .portfolio-image,
+    .hero-image {
+        width: 100%;
+        height: auto;
+    }
+
     .project-grid {
         flex-direction: column;
     }
@@ -573,6 +585,12 @@
     .sample-buttons a {
         flex: 1 1 45%;
         padding: 12px;
+    }
+
+    /* Safety: no horizontal scroll on small screens */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 }
         
