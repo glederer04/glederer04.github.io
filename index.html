@@ -446,11 +446,11 @@
         margin: 10px;
     }
 
-    /* Tabs bar: keep sticky, add room for icons */
+    /* Tabs bar: keep sticky */
     .tabs {
         justify-content: center;
-        padding: 10px 45px; /* space for icons on left/right */
-        box-sizing: border-box; /* prevents extra horizontal overflow */
+        padding: 12px 16px;
+        box-sizing: border-box;
     }
 
     /* Hide GL initials on small screens */
@@ -458,19 +458,19 @@
         display: none;
     }
 
-    /* Profile & menu buttons – MOBILE ONLY (bigger & tappable) */
+    /* Profile & menu buttons – MOBILE ONLY (bigger & a bit lower) */
     .profile-toggle,
     .menu-toggle {
         display: block;                 /* override desktop hide */
         position: absolute;
-        top: 50%;
+        top: 60%;                       /* slightly lower in the bar */
         transform: translateY(-50%);
         background-color: transparent;
         border: none;
-        font-size: 28px;                /* bigger icon */
+        font-size: 30px;                /* bigger icon */
         cursor: pointer;
         color: #fff;
-        padding: 8px 12px;              /* bigger tap area */
+        padding: 10px 14px;             /* bigger tap area */
         line-height: 1;
     }
 
@@ -482,20 +482,22 @@
         right: 8px;
     }
 
-    /* Default: hide the tab links on mobile (use burger to show) */
+    /* TAB GROUP: off-canvas right panel */
     .tab-group {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #333;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 0;
-        border-radius: 0 0 8px 8px;
-        min-width: 170px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        z-index: 1001;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 70%;
+        max-width: 280px;
+        background-color: #333;
+        padding-top: 70px;              /* space from top so it clears the bar */
+        padding-bottom: 20px;
+        transform: translateX(100%);    /* hidden off-screen by default */
+        transition: transform 0.25s ease-out;
+        z-index: 1500;
     }
 
     .tab-group .tab,
@@ -503,8 +505,9 @@
         margin: 0;
         width: 100%;
         text-align: left;
-        font-size: 18px;
-        padding: 8px 16px;
+        font-size: 20px;
+        padding: 10px 20px;
+        border-radius: 0;
     }
 
     .tab-group .tab:hover,
@@ -512,12 +515,12 @@
         background-color: #555;
     }
 
-    /* Show nav when tabs bar has nav-open */
+    /* When burger is active, slide the panel in */
     .tabs.nav-open .tab-group {
-        display: flex;
+        transform: translateX(0);
     }
 
-    /* Make dropdown inside mobile nav render nicely */
+    /* Make dropdown inside mobile nav render nicely as part of the panel */
     .dropdown {
         width: 100%;
     }
@@ -530,12 +533,12 @@
     }
 
     .dropdown-content a {
-        padding: 8px 32px;
+        padding: 8px 40px;
         width: 100%;
         text-align: left;
     }
 
-    /* PROFILE: slide-in panel */
+    /* PROFILE: slide-in left drawer */
     .profile {
         position: fixed;
         top: 0;
