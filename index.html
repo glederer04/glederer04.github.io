@@ -462,9 +462,9 @@
     .profile-toggle,
     .menu-toggle {
         display: block;                 /* override desktop hide */
-        position: absolute;
-        top: 100%;                       /* slightly lower in the bar */
-        transform: translateY(-50%);
+        position: fixed;                /* stay put while scrolling */
+        top: 70px;                      /* move them further down the screen */
+        transform: translateY(0);
         background-color: #333;
         border: none;
         font-size: 40px;                /* bigger icon */
@@ -472,14 +472,15 @@
         color: #fff;
         padding: 10px 14px;             /* bigger tap area */
         line-height: 1;
+        z-index: 2001;                  /* above nav drawer + tabs */
     }
 
     .profile-toggle {
-        left: 8px;
+        left: 12px;
     }
 
     .menu-toggle {
-        right: 8px;
+        right: 12px;
     }
 
     /* TAB GROUP: off-canvas right panel */
@@ -513,6 +514,17 @@
     .tab-group .tab:hover,
     .tab-group .dropdown-title:hover {
         background-color: #555;
+    }
+
+    .tab-group .tab,
+    .tab-group .dropdown-title,
+    .tab-group .dropdown-content a {
+        color: #fff;
+    }
+
+    .tab-group .dropdown-content a:hover {
+        background-color: #555;
+        color: #fff;
     }
 
     /* When burger is active, slide the panel in */
