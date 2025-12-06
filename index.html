@@ -429,11 +429,164 @@
           transform: translateY(-1px);
         }
 
+/* ---- MOBILE LAYOUT (no desktop changes) ---- */
+@media (max-width: 768px) {
+
+    /* Body & main layout stack vertically */
+    body {
+        display: block;
+    }
+
+    .container {
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    /* Tabs bar: keep sticky, add room for icons */
+    .tabs {
+        justify-content: center;
+        padding: 10px 45px; /* space for icons on left/right */
+    }
+
+    /* Hide GL initials on small screens if you want it cleaner */
+    .gl-initials {
+        display: none;
+    }
+
+    /* Profile & menu buttons only visible on mobile */
+    .profile-toggle,
+    .menu-toggle {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        color: #fff;
+        padding: 4px 6px;
+    }
+
+    .profile-toggle {
+        left: 10px;
+    }
+
+    .menu-toggle {
+        right: 10px;
+    }
+
+    /* Default: hide the tab links on mobile (use burger to show) */
+    .tab-group {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #333;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 0;
+        border-radius: 0 0 8px 8px;
+        min-width: 170px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        z-index: 1001;
+    }
+
+    .tab-group .tab,
+    .tab-group .dropdown-title {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .tab-group .tab:hover,
+    .tab-group .dropdown-title:hover {
+        background-color: #555;
+    }
+
+    /* Show nav when tabs bar has nav-open */
+    .tabs.nav-open .tab-group {
+        display: flex;
+    }
+
+    /* Make dropdown inside mobile nav render nicely */
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .dropdown-content a {
+        padding: 8px 32px;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* PROFILE: turn into slide-in panel instead of sticky left card */
+    .profile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        max-width: 320px;
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+        transform: translateX(-100%);
+        transition: transform 0.25s ease-out;
+        z-index: 2000;
+        overflow-y: auto;
+    }
+
+    /* When opened via button */
+    .profile.profile-open {
+        transform: translateX(0);
+    }
+
+    /* Give main content full width since profile is hidden by default */
+    .homepage-content,
+    .portfolio-content,
+    .resume-content {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0 20px 0;
+    }
+
+    /* Project tiles: full-width on very small screens */
+    .project-grid {
+        flex-direction: column;
+    }
+
+    .project-tile {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Sample buttons: 2 per row-ish */
+    .sample-buttons a {
+        flex: 1 1 45%;
+        padding: 12px;
+    }
+}
+        
     </style>
 </head>
 <body>
     <div class="tabs">
+        <button class="profile-toggle" aria-label="Open profile panel">
+            &#128100;
+        </button>
         <div class="gl-initials">GL</div>
+        <button class="menu-toggle" aria-label="Open navigation menu">
+            &#9776;
+        </button>
         <div class="tab-group">
             <a class="tab" href="#featured">Featured</a>
             <a class="tab" href="#home">Home</a>
@@ -807,6 +960,45 @@
             });
             document.getElementById(tabId).style.display = 'block';
         }
+
+            // --- Mobile hamburger + profile drawer ---
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuToggle = document.querySelector('.menu-toggle');
+        var profileToggle = document.querySelector('.profile-toggle');
+        var tabsBar = document.querySelector('.tabs');
+        var profilePanel = document.querySelector('.profile');
+
+        if (menuToggle && tabsBar) {
+            menuToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                tabsBar.classList.toggle('nav-open');
+            });
+        }
+
+        if (profileToggle && profilePanel) {
+            profileToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                profilePanel.classList.toggle('profile-open');
+            });
+        }
+
+        // Close nav/profile if user taps anywhere in main content
+        document.addEventListener('click', function () {
+            if (tabsBar) {
+                tabsBar.classList.remove('nav-open');
+            }
+            if (profilePanel) {
+                profilePanel.classList.remove('profile-open');
+            }
+        });
+
+        // Prevent clicks inside profile from closing it immediately
+        if (profilePanel) {
+            profilePanel.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        }
+    });
 </script>
 
 </body>
