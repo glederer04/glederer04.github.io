@@ -427,6 +427,34 @@
 .menu-toggle {
     display: none;
 }
+
+        /* Desktop-only fix for UNC WBB Practice Website hero image */
+@media (min-width: 769px) {
+  /* Stack the heading, image, and text vertically */
+  #portfolio .portfolio {
+    display: block;
+  }
+
+  /* Remove the huge right margin from this heading on desktop */
+  #portfolio .portfolio h2 {
+    margin-right: 0 !important;
+  }
+
+  /* Make the linked image a full-width rectangle under the heading */
+  #portfolio .portfolio > a {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #portfolio .portfolio-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
         
 @media (max-width: 768px) {
 
