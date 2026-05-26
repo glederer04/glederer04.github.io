@@ -428,6 +428,64 @@
     display: none;
 }
 
+.tpip-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    padding: 18px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.tpip-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.22);
+    transform: translateY(-1px);
+}
+
+.tpip-logo-link {
+    display: block;
+    flex: 0 0 145px;
+}
+
+.tpip-logo {
+    width: 145px;
+    max-width: 145px;
+    height: auto;
+    border-radius: 14px;
+    display: block;
+    margin: 0;
+}
+
+.tpip-info {
+    flex: 1;
+}
+
+.tpip-info h2,
+.tpip-info h3 {
+    margin: 0 0 8px 0;
+    color: #111;
+}
+
+.tpip-info p {
+    margin: 0 0 10px 0;
+    line-height: 1.45;
+    color: #333;
+}
+
+.tpip-link {
+    display: inline-block;
+    font-weight: bold;
+    color: #004080 !important;
+    text-decoration: underline !important;
+}
+
+.tpip-link:hover {
+    color: #0066cc !important;
+}
+
         /* Desktop-only fix for UNC WBB Practice Website hero image */
 @media (min-width: 769px) {
   /* Stack the heading, image, and text vertically */
@@ -630,6 +688,21 @@
         max-width: 100%;
         overflow-x: hidden;
     }
+
+        .tpip-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .tpip-logo-link {
+        flex: 0 0 auto;
+    }
+
+    .tpip-logo {
+        width: 130px;
+        max-width: 130px;
+    }
 }
 
      .honors-heading::before {
@@ -705,6 +778,31 @@
                   </a>
                 </div>
             </p>
+            <div class="tpip-card">
+                <a class="tpip-logo-link"
+                   href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Open Transfer Portal Intelligence Platform">
+                    <img class="tpip-logo"
+                         src="TPIP_logo.png"
+                         alt="Transfer Portal Intelligence Platform logo">
+                </a>
+
+                <div class="tpip-info">
+                    <h3>Transfer Portal Intelligence Platform</h3>
+                    <p>
+                        A college basketball transfer portal projection site built to evaluate player movement,
+                        return/transfer likelihood, destination tier fits, and projected post-transfer impact.
+                    </p>
+                    <a class="tpip-link"
+                       href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Open Transfer Portal Intelligence Platform →
+                    </a>
+                </div>
+            </div>
             <div class="project-grid" style="margin-top: 15px;">
               <div class="project-tile">
                   <iframe src="Sample_ExhibitionReport.pdf#view=FitH" type="application/pdf"></iframe>
@@ -900,6 +998,38 @@
         </div>
         <div class="portfolio-content tab-content" id="portfolio">
             <div class="portfolio">
+                <div class="tpip-card">
+                    <a class="tpip-logo-link"
+                       href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Open Transfer Portal Intelligence Platform">
+                        <img class="tpip-logo"
+                             src="TPIP_logo.png"
+                             alt="Transfer Portal Intelligence Platform logo">
+                    </a>
+
+                    <div class="tpip-info">
+                        <h2>
+                            <a href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Transfer Portal Intelligence Platform
+                            </a>
+                        </h2>
+                        <p>
+                            A transfer portal analytics platform built to project player movement, return/transfer
+                            likelihood, destination conference tier, and post-transfer performance. The site combines
+                            modeling, player-level cards, confidence ranges, and interactive presentation of results.
+                        </p>
+                        <a class="tpip-link"
+                           href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            View Full Project →
+                        </a>
+                    </div>
+                </div>
                 <h2 style="margin-right: 500px;"><a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">UNC WBB Practice Website</a></h2>
                 <a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">
                     <img class="portfolio-image"
