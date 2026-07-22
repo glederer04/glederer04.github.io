@@ -30,6 +30,9 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeNav();
     });
+    window.matchMedia('(min-width: 861px)').addEventListener('change', (event) => {
+      if (event.matches) closeNav();
+    });
   }
 
   const revealItems = document.querySelectorAll('[data-reveal]');
