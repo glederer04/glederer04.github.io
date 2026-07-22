@@ -1,1281 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gregory Lederer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
-    <style>
-        .sample-visuals {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .sample-visuals a {
-            width: calc(20% - 10px);
-            text-align: center;
-            text-decoration: none;
-            padding: 10px;
-            background-color: #e3e3e3;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .sample-visuals a:hover {
-            background-color: #e0e0e0;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tabs {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* still center the tab group */
-            padding: 15px;
-            background-color: #333;
-            width: 100%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .tab {
-            font-size: 24px;
-            cursor: pointer;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .tab:hover {
-            background-color: #555;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: row; /* Updated to row */
-            align-items: flex-start;
-            margin: 20px 20px 20px 0; /* Adjusted margin */
-            text-align: left;
-        }
-
-        .profile {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: left;
-            margin-right: 20px;
-            position: sticky;
-            top: 70px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-
-        img {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 5px;
-        }
-
-        .profile img {
-            border-radius: 50%;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        p {
-            margin-bottom: 5px;
-        }
-
-        .additional-info {
-            text-align: left;
-            margin-bottom: 10px;
-        }
-
-        .additional-info img {
-            width: 25px;
-            height: 25px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .contact-icons a img {
-            width: 25px;
-            height: 25px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .contact-icons a {
-            display: block;
-            margin-bottom: 5px;
-            text-decoration: none;
-            color: #000000;
-            transition: text-decoration 0.3s;
-        }
-
-        .contact-icons a:hover {
-            text-decoration: underline;
-        }
-
-        .homepage-content,
-        .portfolio-content,
-        .resume-content{
-            width: 1100px;
-            padding: 20px;
-            background-color: #edebeb;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .portfolio-content .portfolio {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-
-        .portfolio-content .portfolio-image {
-            width: 100%;
-            height: auto;
-            max-height: 180px;    /* optional */
-            border-radius: 8px;
-            display: block;
-            object-fit: cover;
-        }
-        /* Style the hyperlink color */
-        .portfolio-content .portfolio a {
-            color: #000;
-            text-decoration: none;
-        }
-        /* Change color on hover for better user experience */
-        .portfolio-content .portfolio a:hover {
-            color: #333;
-        }
-
-        footer {
-            margin-top: auto;
-            background-color: #bfbfbf;
-            color: #000;
-            padding: 10px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-title {
-            cursor: pointer;
-            border-bottom: 1px dashed #333;
-            display: inline-block;
-            padding-right: 10px;
-        }
-
-        .dropdown-content {
-            display: none; /* Keep hidden by default */
-            position: absolute;
-            background-color: #f9f9f9;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            top: 100%;
-            left: 0;
-            min-width: 160px;
-            border-radius: 6px;
-            padding: 10px 0;
-            flex-direction: column; /* Only needed when display is flex */
-            align-items: center;
-        }
-
-        .dropdown-content p {
-            padding: 10px;
-            margin: 0;
-        }
-
-        .dropdown-content a {
-            text-decoration: none;
-            color: #000;
-            padding: 8px 16px;
-            width: auto;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-content a:hover {
-            text-decoration: underline;
-            background-color: #e0e0e0;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: flex; /* now flex ONLY when hovered */
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .additional-images {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .portfolio-image.left {
-            float: left;
-        }
-
-        .portfolio-image.right {
-            float: right;
-        }
-
-        .sample-section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-            clear: both;
-        }
-
-        .sample-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .sample-buttons a {
-            flex: 1 1 18%; /* Adjusts button width for each row */
-            text-align: center;
-            text-decoration: none;
-            padding: 20px;
-            background-color: #e3e3e3;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sample-buttons a:hover {
-            background-color: #e0e0e0;
-        }
-
-        .read-more-content {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .read-more-toggle {
-            cursor: pointer;
-            color: #8da2b8;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 5px;
-            user-select: none;
-        }
-
-        .read-more-toggle:hover {
-            text-decoration: underline;
-        }
-
-        .read-more-toggle .arrow {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .read-more-toggle.expanded .arrow {
-            transform: rotate(90deg);
-        }
-
-        .experience-heading::before,
-        .extracurricular-heading::before {
-            content: "•";
-            color: #000;
-            margin-right: 8px;
-            font-weight: bold;
-            font-size: inherit;
-        }
-
-        .experience-date {
-            font-size: 0.66em;
-            font-style: italic;
-            font-weight: normal;
-            margin-left: 8px;
-            color: #555;
-        }
-
-        .gl-initials {
-            position: absolute;
-            left: 20px;
-            font-family: 'Georgia', serif;
-            font-size: 48px;
-            color: #666;
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .tab-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .project-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .project-tile {
-            width: 30%; /* allows 3 side-by-side */
-            min-width: 280px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .project-tile iframe {
-            width: 100%;
-            height: 400px; /* taller than wide */
-            border: none;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .project-tile h3 {
-            font-size: 16px;
-            text-align: center;
-            margin: 0;
-            color: #333;
-        }
-
-        .project-link {
-            font-size: 16px;
-            font-weight: bold;
-            color: #004080;
-            text-decoration: underline;
-            text-align: center;
-            transition: color 0.3s;
-        }
-
-        .project-link:hover {
-            color: #0066cc;
-        }
-
-        /* Featured hero link */
-        .featured-hero {
-          display: flex;
-          justify-content: center;
-          margin: 15px 0 10px;
-        }
-        .hero-link {
-          display: inline-block;
-          border-radius: 8px;
-          transition: box-shadow 0.25s ease, transform 0.2s ease;
-        }
-        .hero-image {
-          width: 100%;         /* same dimensions as your portfolio tiles */
-          max-width: 100%;
-          height: 120px;
-          border-radius: 8px;
-          background-image: url('https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large');
-          background-size: cover;
-          background-position: center;
-        }
-        .hero-link:hover {
-          box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-          transform: translateY(-1px);
-        }
-
-        /* Hover drop shadow for the two big portfolio thumbnails */
-        #portfolio .portfolio > a > .portfolio-image {
-          border-radius: 8px; /* keep rounded corners */
-          transition: box-shadow 0.25s ease, transform 0.2s ease;
-        }
-
-        #portfolio .portfolio > a:hover > .portfolio-image,
-        #portfolio .portfolio > a:focus-visible > .portfolio-image {
-          box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-          transform: translateY(-1px);
-        }
-
-.profile-toggle,
-.menu-toggle {
-    display: none;
-}
-
-.tpip-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
-    padding: 18px;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    transition: box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.tpip-card:hover {
-    box-shadow: 0 12px 24px rgba(0,0,0,0.22);
-    transform: translateY(-1px);
-}
-
-.tpip-logo-link {
-    display: block;
-    flex: 0 0 145px;
-}
-
-.tpip-logo {
-    width: 145px;
-    max-width: 145px;
-    height: auto;
-    border-radius: 14px;
-    display: block;
-    margin: 0;
-}
-
-.tpip-info {
-    flex: 1;
-}
-
-.tpip-info h2,
-.tpip-info h3 {
-    margin: 0 0 8px 0;
-    color: #111;
-}
-
-.tpip-info p {
-    margin: 0 0 10px 0;
-    line-height: 1.45;
-    color: #333;
-}
-
-.tpip-link {
-    display: inline-block;
-    font-weight: bold;
-    color: #004080 !important;
-    text-decoration: underline !important;
-}
-
-.tpip-link:hover {
-    color: #0066cc !important;
-}
-
-        /* Desktop-only fix for UNC WBB Practice Website hero image */
-@media (min-width: 769px) {
-  /* Stack the heading, image, and text vertically */
-  #portfolio .portfolio {
-    display: block;
-  }
-
-  /* Remove the huge right margin from this heading on desktop */
-  #portfolio .portfolio h2 {
-    margin-right: 0 !important;
-  }
-
-  /* Make the linked image a full-width rectangle under the heading */
-  #portfolio .portfolio > a {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  #portfolio .portfolio-image {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: none;
-  }
-}
-        
-@media (max-width: 768px) {
-
-    /* Body & main layout stack vertically */
-    body {
-        display: block;
-    }
-
-    .container {
-        flex-direction: column;
-        margin: 80px 10px 10px;
-    }
-
-    /* Tabs bar: keep sticky */
-    .tabs {
-        justify-content: center;
-        padding: 12px 16px;
-        box-sizing: border-box;
-    }
-
-    /* Hide GL initials on small screens */
-    .gl-initials {
-        display: none;
-    }
-
-    /* Profile & menu buttons – MOBILE ONLY (bigger & a bit lower) */
-    .profile-toggle,
-    .menu-toggle {
-        display: block;                 /* override desktop hide */
-        position: fixed;                /* stay put while scrolling */
-        top: 50px;                      /* move them further down the screen */
-        transform: translateY(0);
-        background-color: #333;
-        border: none;
-        font-size: 40px;                /* bigger icon */
-        cursor: pointer;
-        color: #fff;
-        padding: 10px 14px;             /* bigger tap area */
-        line-height: 1;
-        z-index: 2001;                  /* above nav drawer + tabs */
-    }
-
-    .profile-toggle {
-        left: 12px;
-    }
-
-    .menu-toggle {
-        right: 12px;
-    }
-
-    /* TAB GROUP: off-canvas right panel */
-    .tab-group {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 70%;
-        max-width: 280px;
-        background-color: #333;
-        padding-top: 70px;              /* space from top so it clears the bar */
-        padding-bottom: 20px;
-        transform: translateX(100%);    /* hidden off-screen by default */
-        transition: transform 0.25s ease-out;
-        z-index: 1500;
-    }
-
-    .tab-group .tab,
-    .tab-group .dropdown-title {
-        margin: 0;
-        width: 100%;
-        text-align: left;
-        font-size: 20px;
-        padding: 10px 20px;
-        border-radius: 0;
-    }
-
-    .tab-group .tab:hover,
-    .tab-group .dropdown-title:hover {
-        background-color: #555;
-    }
-
-    .tab-group .tab,
-    .tab-group .dropdown-title,
-    .tab-group .dropdown-content a {
-        color: #fff;
-    }
-
-    .tab-group .dropdown-content a:hover {
-        background-color: #555;
-        color: #fff;
-    }
-
-    /* When burger is active, slide the panel in */
-    .tabs.nav-open .tab-group {
-        transform: translateX(0);
-    }
-
-    /* Make dropdown inside mobile nav render nicely as part of the panel */
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background-color: transparent;
-        padding: 0;
-    }
-
-    .dropdown-content a {
-        padding: 8px 40px;
-        width: 100%;
-        text-align: left;
-    }
-
-    /* PROFILE: slide-in left drawer */
-    .profile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 80%;
-        max-width: 320px;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-        box-shadow: 4px 0 15px rgba(0,0,0,0.3);
-        transform: translateX(-100%);
-        transition: transform 0.25s ease-out;
-        z-index: 2000;
-        overflow-y: auto;
-    }
-
-    .profile.profile-open {
-        transform: translateX(0);
-    }
-
-    /* Make content fluid on mobile */
-    .homepage-content,
-    .portfolio-content,
-    .resume-content {
-        width: 100%;
-        box-sizing: border-box;
-        margin: 10px 0 20px 0;
-    }
-
-    /* Kill horizontal scroll: override fixed-width images */
-    .portfolio-content .portfolio-image {
-        width: 100%;
-        height: 140px;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .project-grid {
-        flex-direction: column;
-    }
-
-    .project-tile {
-        width: 100%;
-        min-width: 0;
-    }
-
-    /* Sample buttons: 2 per row-ish */
-    .sample-buttons a {
-        flex: 1 1 45%;
-        padding: 12px;
-    }
-
-    /* Safety: no horizontal scroll on small screens */
-    html, body {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-        .tpip-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 16px;
-    }
-
-    .tpip-logo-link {
-        flex: 0 0 auto;
-    }
-
-    .tpip-logo {
-        width: 130px;
-        max-width: 130px;
-    }
-}
-
-     .honors-heading::before {
-        content: none !important;
-    }   
-        
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gregory Lederer is a basketball analytics professional building models, reporting systems, and decision-support tools for teams and front offices.">
+  <meta name="theme-color" content="#071a2e">
+  <meta property="og:title" content="Gregory Lederer | Basketball Analytics">
+  <meta property="og:description" content="Basketball analytics, modeling, and decision-support tools built for coaches, teams, and front offices.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://glederer04.github.io/">
+  <meta property="og:image" content="https://glederer04.github.io/assets/images/projects/tpip-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Gregory Lederer | Basketball Analytics</title>
+  <link rel="canonical" href="https://glederer04.github.io/">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+  <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-    <div class="tabs">
-        <button class="profile-toggle" aria-label="Open profile panel">
-            &#128100;
-        </button>
-        <div class="gl-initials">GL</div>
-        <button class="menu-toggle" aria-label="Open navigation menu">
-            &#9776;
-        </button>
-        <div class="tab-group">
-            <a class="tab" href="#featured">Featured</a>
-            <a class="tab" href="#home">Home</a>
-            <a class="tab" href="#portfolio">Portfolio</a>
-            <div class="dropdown">
-              <a class="tab dropdown-title">Projects</a>
-              <div class="dropdown-content">
-                <a href="#nba-projects" onclick="switchTab('nba-projects')">NBA</a>
-                <a href="#school-projects" onclick="switchTab('school-projects')">School</a>
-              </div>
-            </div>
-            <a class="tab" href="#resume">Resume</a>
-        </div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="header-shell">
+      <a class="brand" href="#top" aria-label="Gregory Lederer, home">
+        <span class="brand-mark" aria-hidden="true">GL</span>
+        <span class="brand-copy">
+          <strong>Gregory Lederer</strong>
+          <small>Basketball Analytics</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="sr-only">Open navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a class="nav-cta" href="mailto:gregoryled@yahoo.com">Let's talk</a>
+      </nav>
     </div>
-    <div class="container">
-        <div class="profile">
-            <img src="https://pbs.twimg.com/media/GQnGmcwaAAAZxmA?format=jpg&name=medium" alt="Gregory Lederer" width="150" height="150">
-            <h1>Gregory Lederer</h1>
-            <p>(610)-500-0226</p>
-            <p>
-                Numbers and Basketball.
-            </p>
-            <div class="additional-info">
-                <img src="https://cdn3.iconfinder.com/data/icons/business-life-1/532/placeholder_map_marker_position_pinpoint-512.png" alt="Location">
-                Glen Mills, Pennsylvania
-            </div>
-            <div class="contact-icons">
-                <a href="mailto:gregoryled@yahoo.com">
-                    <img src="https://static.vecteezy.com/system/resources/previews/023/618/290/non_2x/email-icon-clipart-free-free-png.png" alt="Personal Email">
-                    Personal Email
-                </a>
-                <a href="https://www.linkedin.com/in/gregorylederer/">
-                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn">
-                    LinkedIn
-                </a>
-                <a href="https://github.com/glederer04">
-                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
-                    GitHub
-                </a>
-            </div>
-        </div>
+  </header>
 
-        <div class="portfolio-content tab-content" id="featured">
-            <h2 style="font-size: 32px; text-decoration: underline;">Featured</h2>
-            <p style="margin-top: -10px;">A few featured items that offer a quick snapshot of the work I do in basketball analytics, reporting, and data storytelling.</p>
-            <p style="text-align: center; margin-top: 15px;">
-              <span style="font-size: 0.9em; color: #444;">Click the image below for a link to a demo UNC WBB Practice Shiny App</span>
-                <div class="featured-hero">
-                    <a class="hero-link"
-                     href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/"
-                     target="_blank"
-                     aria-label="Open demo UNC WBB Practice Shiny App">
-                    <img class="hero-image"
-                         src="https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large"
-                         alt="UNC WBB Practice Website preview">
-                  </a>
-                </div>
-            </p>
-            <div class="tpip-card">
-                <a class="tpip-logo-link"
-                   href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="Open Transfer Portal Intelligence Platform">
-                    <img class="tpip-logo"
-                         src="TPIP_logo.png"
-                         alt="Transfer Portal Intelligence Platform logo">
-                </a>
-
-                <div class="tpip-info">
-                    <h3>Transfer Portal Intelligence Platform</h3>
-                    <p>
-                        A college basketball transfer portal projection site built to evaluate player movement,
-                        return/transfer likelihood, destination tier fits, and projected post-transfer impact.
-                    </p>
-                    <a class="tpip-link"
-                       href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Open Transfer Portal Intelligence Platform →
-                    </a>
-                </div>
-            </div>
-            <div class="project-grid" style="margin-top: 15px;">
-             <div class="project-tile">
-                <iframe src="SampleWBBScout.pdf#view=FitH" type="application/pdf"></iframe>
-                <a href="SampleWBBScout.pdf" target="_blank" class="project-link" title="Click to view full screen">
-                  <span style="font-size: 0.85em;">SMU Scouting Report<br>Click to view full screen</span>
-                </a>
-              </div>
-              <div class="project-tile">
-                <iframe src="WNBA_FreeAgency.pdf#view=FitH" type="application/pdf"></iframe>
-                <a href="WNBA_FreeAgency.pdf" target="_blank" class="project-link" title="Click to view full screen">
-                  <span style="font-size: 0.85em;">WNBA Free Agency<br>Click to view full screen</span>
-                </a>
-              </div>
-              <div class="project-tile">
-                <iframe src="PG_Salaries_P1.html"></iframe>
-                <a href="PG_Salaries_P1.html" target="_blank" class="project-link" title="Click to view full screen">
-                  <span style="font-size: 0.85em;">NBA PG Salary Analysis<br>Click to view full screen</span>
-                </a>
-              </div>
-            </div>
-        </div>
-        
-        <div class="homepage-content tab-content" id="home">
-            <h2 style="font-size: 32px; text-decoration: underline;">About Me</h2>
-            <p>Hi, I’m Gregory Lederer — a graduate from the <b>University of North Carolina at Chapel Hill</b> with a major in <b>Statistics & Analytics</b> and minors in <b>Data Science</b> <em>and</em> <b>Geography</b> (the second one kind of happened by accident, but I’m proud of it).</p>
-            <p>Originally from Glen Mills, PA, and formerly at UMass Amherst, I’ve always been passionate about using data to better understand the game of basketball — and sports in general. I love digging into analytics, creating visualizations, and building tools that make insights easy to understand and actionable.</p>
-            <p>Last summer (2025), I interned in <b>Data Analytics</b> with the <b>Miami HEAT</b>, where I worked on internal documentation tools, contributed to predictive modeling projects, and gained hands-on experience with the day-to-day analytics operations of an NBA organization.</p>
-            <p>Also worth knowing: I’m a huge Philadelphia Phillies fan… but not an Eagles fan (NY Giants &gt;).</p>
-            <p>In the long term, I’m working toward a career in the NBA — whether that’s on the basketball or business side — where I can combine my competitive mindset, creativity, and data-driven approach to help a team win.</p>
-
-            <h2 style="font-size: 32px; text-decoration: underline;">Honors &amp; Programs</h2>
-
-                <h2 class="honors-heading">
-                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/960px-National_Basketball_Association_logo.svg.png"
-                       alt="NBA Logo"
-                       style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                  NBA Future Analytics Stars Program
-                  <span class="experience-date">January 2026 – May 2026</span>
-                </h2>
-
-                <p>
-                  Selected as 1 of 50 participants from ~2,500 applicants for the NBA’s Future Analytics Stars program.
-                  Participating in NBA-led analytics training and mentorship with exposure to front-office workflows.
-                  Analyzed NBA optical tracking and skeletal pose data to extract player movement patterns and spatial interactions, developing experience working with high-frequency spatiotemporal data for basketball insights.
-                </p>
-            
-            <h2 style="font-size: 32px; text-decoration: underline;">Experiences</h2>
-            <h2>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/North_Carolina_Tar_Heels_logo.svg/1200px-North_Carolina_Tar_Heels_logo.svg.png" alt="UNC Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Senior Basketball Analytics Assistant - 
-                <a href="https://goheels.com/sports/womens-basketball" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    UNC Women's Basketball
-                </a>
-                <span class="experience-date">October 2024 – April 2026</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During the 2025–26 season, I stepped into a larger leadership role while continuing to expand how analytics is integrated across UNC Women’s Basketball. I built and led the program’s first student analyst team—recruiting, training, and managing multiple students who supported practice reporting, scouting, and special projects—marking the first time the program has had multiple dedicated analytics contributors. This growth reflected both the staff’s trust in me and the broader commitment to incorporating analytics into daily operations and decision-making.</p>
-            <p>The 2025-26 season itself was one of the most successful stretches in program history. We advanced to the Sweet 16 for a second consecutive year, secured 14 ACC wins, and recorded back-to-back 25-win seasons—all firsts under the current staff. Additionally, the team achieved back-to-back seasons with 13+ ACC wins for the first time in program history and set a single-season program record in three-pointers made. These accomplishments were particularly notable given our roster makeup, as we were the 7th youngest team in the Power 4 with 11 underclassmen, highlighting both player development and the effectiveness of our overall process.</p>
-            <p>During the 2024-25 season, I had the opportunity to join and contribute to the success of the UNC Women’s Basketball team as their Basketball Analytics Assistant. I played a key role in the team’s achievements, including securing a top 14 ranking in the final AP poll, with a peak of 8th during week 17, and the most wins under the current head coach. The team also earned a program-best tournament seed in over a decade, hosted March Madness games for the first time under the current staff, and reached the Sweet 16 for the second time with this coaching staff. It has been rewarding to see how my work in analytics has supported the team’s growth and success. </p>
-            <p>In my role, I oversee the management of a comprehensive practice database that tracks player stats, shot locations, and overall progress, ensuring all data is accurate and up to date. I generate custom visual analytics reports for coaches after each practice using a Shiny App, providing insights into player development and team performance to help drive adjustments. Additionally, I developed a custom Shiny App to analyze offensive set metrics, helping coaches make more informed decisions on play calls by comparing set effectiveness based on key metrics like shot quality, turnovers, and fouls. I also assist with personalized scouting reports for each game, offering actionable insights that align with the coaches' observations and strategy. These projects, along with the numerous miscellaneous reports that are completed when needed, assist our coaches to make the most well-informed decisions they can.</p>
-            </div>
-                
-            <h2>
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Miami_Heat_logo.svg/1200px-Miami_Heat_logo.svg.png" alt="Heat Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Data Analytics Intern - 
-                <a href="https://www.nba.com/heat/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    Miami HEAT
-                </a> & 
-                <a href="https://601analytics.com" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    601 Analytics
-                </a>
-                <span class="experience-date">June – August 2025</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During the summer of 2025, I had the opportunity to work in data analytics with the Miami HEAT, where I collaborated closely with 601 Analytics. A large portion of my work focused on improving internal documentation and workflows, which included designing a custom HTML-based site that organized all of our data pipelines, reports, models, and code. This involved developing a searchable navigation system, building interactive PDF viewers, and integrating team-based filters so staff could easily find and understand the resources they needed. The project was used across departments and will continue to serve as a long-term reference hub for the organization.</p>
-            <p>In addition to documentation, I spent time working in SQL and Python to support our internal modeling projects, most notably contributing to an in-season attendance forecast model. I helped clean, structure, and analyze large event-level datasets that powered the model and collaborated with the team on how to best communicate results. Toward the end of the summer, I also co-led a presentation to the organization on increasing game viewership and engagement, which was selected as the winning intern project.</p>
-            </div>
-            
-            <h2>
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c7/SacramentoKings.svg/1200px-SacramentoKings.svg.png" alt="Kings Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Business Intelligence Intern - 
-                <a href="https://www.nba.com/kings/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    Sacramento Kings
-                </a>
-                <span class="experience-date">June – August 2024</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During the summer of 2024, I had the incredible opportunity to intern with the Sacramento Kings as part of their Business Intelligence team. During my time there, I honed my skills in SQL, R, and Tableau while gaining valuable insights into the inner workings of an NBA team. I learned how data drives critical business decisions and how the organization operates behind the scenes. One of my key projects involved creating efficient, long-lasting dashboards in Tableau for the marketing department to evaluate the success of events at the Golden 1 Center. This experience allowed me to understand the importance of creating tools that not only provide immediate insights but also remain functional and relevant over time.</p>
-            <p>In addition to dashboard creation, I also developed a logistic regression model in R to predict the likelihood of season ticket members retaining their memberships for the next season. I integrated this model into a Shiny app, providing an interactive tool for the team to use in their decision-making process. SQL played a crucial role in both projects, enabling me to manage and manipulate the data effectively. I want to thank everyone who helped me get this opportunity and the entire team at the Kings for making this experience so rewarding. I'm excited to apply the skills and knowledge I've gained to future opportunities in sports analytics and business intelligence.</p>
-            </div>
-                
-            <h2>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png" alt="UMass Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Analytics Assistant - 
-                <a href="https://umassathletics.com/sports/baseball" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    UMass Baseball
-                </a>
-                <span class="experience-date">February – May 2024</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>Spring of 2024 marked the beginning of an exciting journey for me as I stepped into the role of an analytics assistant with UMass baseball. Working closely with our cutting-edge software, <a href="https://www.trumedianetworks.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">TruMedia</a>, I was tasked with managing a myriad of statistics, visualizations, and video analyses. My responsibilities extended to utilizing this wealth of data for team evaluation, scouting, and strategic planning. As someone deeply passionate about gaining hands-on experience in the realm of baseball analytics, I saw this opportunity as an ideal starting point. With a solid foundation in hard skills like R, Python, Tableau, and data science principles, I was confident in my ability to contribute effectively to the team's objectives. Moreover, I was eager to delve deeper into the strategic intricacies that define the game, leveraging my existing knowledge to enhance our approach.</p>
-            </div>
-                
-            <h2>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png" alt="UMass Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Student Manager / Analytics Assistant - 
-                <a href="https://umassathletics.com/sports/mens-basketball" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    UMass Men's Basketball
-                </a>
-                <span class="experience-date">December 2022 – April 2024</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>As a student manager for the UMass Men's Basketball team, from December of my freshman year up until the end of the season my sophomore year, I immersed myself in a dynamic role that seamlessly merged my love for basketball with my proficiency in data science. A significant part of my responsibilities involved developing and maintaining a user-friendly website using Shiny Apps in R, offering insightful visualizations of individual and team practice metrics. Beyond the digital realm, I dedicated over 30 hours per week to executing managerial duties, collaborating closely with coaches, staff, and fellow managers to ensure the smooth operation of practices and games throughout the season.</p>
-            <p>My role extended beyond the traditional boundaries of a student manager. Leveraging my skills in R programming, Microsoft Excel, strategy, and statistics, I provided crucial analytics to coaches, staff, and players. Whether it was generating pregame and postgame reports or contributing to special projects, I found immense satisfaction in applying my data-driven insights to enhance player performance and overall team dynamics. This hands-on experience not only enriched my academic journey but also solidified my passion for the intersection of sports management and data analytics.</p>
-            </div>
-                
-            <h2>
-                <img src="https://intellisportanalytics.com/_next/static/media/logo-icon-black.3ec242ad.png" alt="IntelliSport Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Summer Associate - 
-                <a href="https://intellisportanalytics.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    IntelliSport Analytics
-                </a>
-                <span class="experience-date">March – September 2023</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>As a Summer Associate at IntelliSport Analytics following my freshman year (2023), I delved into the dynamic realm of sports data analytics, contributing to the company's mission of providing sport industry leaders with actionable insights. Using mixed-method data analytics tools, I engaged in quantitative research and analysis to empower decision-makers with the information necessary for strategic choices. Throughout the summer, I presented findings and collaborated on a specific project, honing my skills in quantitative research, data analytics, and statistics.</p>
-            <p>My time at IntelliSport Analytics was a pivotal experience that allowed me to apply classroom knowledge to real-world challenges within the sports industry. The opportunity to work on meaningful projects not only enhanced my analytical skills but also deepened my understanding of the intersection between data and sports.</p>
-            </div>
-                
-            <h2>
-                <img src="https://thetournament.com/wp-content/uploads/2023/12/TBT-Black_outline-01-1-1.png" alt="TBT Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;">
-                Events Intern - 
-                <a href="https://thetournament.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">
-                    The Basketball Tournament (TBT)
-                </a>
-                <span class="experience-date">April – August 2023</span>
-            </h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>As an Events Intern for The Basketball Tournament (TBT) during the summer after my freshman year (2023), I embraced a hybrid role that allowed me to contribute both remotely and in person. My responsibilities spanned various facets of event planning and execution, from managing online orders for product tracking and shipping to coordinating game-day operations in the high-energy atmosphere of competitive basketball.</p>
-            <p>My hands-on involvement in the planning and execution of TBT provided valuable insights into the intricacies of organizing a major sporting event. Working closely with the team, I gained practical experience in managing logistics, handling online orders efficiently, and seamlessly executing game-day operations. The in-person component of my role took me to Philadelphia, where I contributed to the success of the semi-final and final games, adding a dynamic and unforgettable dimension to my internship experience.</p>
-            </div>
-                
-            <h2 class="experience-heading">Basketball Analyst - <a href="https://www.fullcourtanalytics.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">Full Court Analytics</a><span class="experience-date">October 2022 – February 2023</span></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During the winter of my freshman year (2022), I embarked on my first basketball-centric role as a Basketball Analyst for Full Court Analytics. This remote position involved providing high school basketball coaches with cutting-edge analytics, insights, and custom reports. My primary focus was breaking down game footage through in-depth analysis, offering valuable insights to coaches for strategic planning. This experience not only enhanced my strategic thinking and statistical skills but also fueled my passion for leveraging data to optimize performance in the dynamic world of basketball.</p>
-            </div>
-                
-            <h2 class="experience-heading">Data Analytics/Game Day Operations - <a href="https://www.pioneervalleytip-off.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">Pioneer Valley Tip-Off</a><span class="experience-date">October – December 2022</span></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During the winter of my freshman year (2022), I played a pivotal role in the game day operations and data analytics for the Pioneer Valley Tip-Off, a student-run high school basketball event held on the UMass Amherst campus. Leveraging my skills in data analytics and statistics, I utilized software to provide teams with advanced in-game statistics. Collaborating with fellow students who shared similar interests, I actively supported all event teams throughout the weekend, contributing to the success of this engaging high school basketball showcase. This experience not only strengthened my leadership abilities but also allowed me to apply my analytical skills in a real-world, dynamic setting.</p>
-            </div>
-                
-            <h2 style="font-size: 32px; text-decoration: underline;">Extracurricular Activities</h2>
-            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/North_Carolina_Tar_Heels_logo.svg/1200px-North_Carolina_Tar_Heels_logo.svg.png" alt="UNC Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;"><a href="https://cads.cs.unc.edu" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">Carolina Analytics & Data Science Club</a></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During my first semester at UNC, I joined the Carolina Analytics & Data Science (CADS) club at UNC-Chapel Hill, the largest data science organization on campus. As a new member, I'm excited to explore opportunities to develop my skills, connect with fellow students and mentors, and dive deeper into the dynamic field of data science through workshops, events, and career panels.</p>
-            </div>
-                
-            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/North_Carolina_Tar_Heels_logo.svg/1200px-North_Carolina_Tar_Heels_logo.svg.png" alt="UNC Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;"><a href="https://csbcunc.com" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">Carolina Sport Business Club</a></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>My first semester at UNC I became a member of the Carolina Sport Business Club (CSBC) at UNC-Chapel Hill. CSBC provides an exciting platform for students pursuing careers in the sports industry, offering professional development, networking opportunities, and unique experiences like visiting sports venues and engaging with industry professionals. Through CSBC, I’m looking forward to connecting with others who share my passion for sports and business.</p>
-            </div>
-                
-            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png" alt="UMass Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;"><a href="https://www.isenberg.umass.edu/people/mccormack-sport-analytics-club" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">McCormack Strategy & Analytics Club</a></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During my time at UMass, I was an active member of the McCormack Strategy & Analytics Club, where I contributed to the creation and discussion of advanced statistics and ideas within the realm of sports. As part of this vibrant community, we hosted various engaging activities, including guest speaker sessions, discussions on sports statistics and coding, and special events centered around the utilization of advanced analytics within the sports industry. Being a part of this club not only expanded my knowledge but also provided a platform for in-depth exploration and collaboration with like-minded individuals passionate about the intersection of strategy, analytics, and sports.</p>
-            </div>
-                
-            <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png" alt="UMass Logo" style="height: 1em; vertical-align: middle; margin-left: 1px;"><a href="https://www.mccormackstudentleaders.com/" style="text-decoration: none; color: #333; border-bottom: 1px dashed #333;" target="_blank">McCormack Student Leaders Club</a></h2>
-            <div class="read-more-toggle">Read More <span class="arrow">&#9654;</span></div>
-            <div class="read-more-content">
-            <p>During my time at UMass, I actively participated in the McCormack Sport Leaders, a student-run sport management organization committed to fostering experiential learning and helping students excel in the field. Within this dynamic group, we sponsored tournaments, organized sporting events, and hosted guest speakers each semester, creating unique opportunities for students to interact with faculty and gain real-world experience in the sports industry. Being part of McCormack Sport Leaders not only enhanced my understanding of sport management but also provided invaluable hands-on experiences and networking opportunities that complemented my academic pursuits. </p>
-            </div>
-            <!-- You can add more content here, including text and images -->
-        </div>
-        <div class="portfolio-content tab-content" id="portfolio">
-            <div class="portfolio">
-                <div class="tpip-card">
-                    <a class="tpip-logo-link"
-                       href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Open Transfer Portal Intelligence Platform">
-                        <img class="tpip-logo"
-                             src="TPIP_logo.png"
-                             alt="Transfer Portal Intelligence Platform logo">
-                    </a>
-
-                    <div class="tpip-info">
-                        <h2>
-                            <a href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                Transfer Portal Intelligence Platform
-                            </a>
-                        </h2>
-                        <p>
-                            A transfer portal analytics platform built to project player movement, return/transfer
-                            likelihood, destination conference tier, and post-transfer performance. The site combines
-                            modeling, player-level cards, confidence ranges, and interactive presentation of results.
-                        </p>
-                        <a class="tpip-link"
-                           href="https://glederer04.github.io/Test-Transfer-Portal-Model/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            View Full Project →
-                        </a>
-                    </div>
-                </div>
-                <h2 style="margin-right: 500px;"><a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">UNC WBB Practice Website</a></h2>
-                <a href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank">
-                    <img class="portfolio-image"
-                         src="https://pbs.twimg.com/media/Gb42lyUXsAAgHhy?format=jpg&name=large"
-                         alt="UNC WBB Practice Website preview">
-                </a>
-                <p>Explore a demo of the practice website I created for UNC Women’s Basketball, designed to streamline team data and deliver insightful visualizations. This interactive platform, built with Shiny, allows coaches to access practice stats, player performance metrics, and trends with ease, supporting strategic decision-making.</p>
-
-                <br>
-                <p><i>Some of the visuals and projects shown below are from earlier stages of my work. While a few are more basic, they reflect how my skills have grown and progressed over time.</i></p>
-                
-                <h2>Sample Visuals</h2>
-                <div class="sample-section">
-                    <div class="sample-buttons">
-                        <a href="Sample_ExhibitionReport.png" target="_blank">Scrimmage Recap</a>
-                        <a href="Four Factor Heatmap.pdf" target="_blank">Four Factor Heatmap</a>
-                        <a href="ReportCards.pdf" target="_blank">Report Cards</a>
-                        <a href="Plots.pdf" target="_blank">Plots</a>
-                        <a href="Radars.pdf" target="_blank">Radars</a>
-                        <a href="Lineups.pdf" target="_blank">Lineups</a>
-                        <a href="FourFactors.pdf" target="_blank">Four Factors</a>
-                        <a href="Dumbbells.pdf" target="_blank">Dumbbells</a>
-                    </div>
-                </div>
-
-                <h2>Sample Projects</h2>
-                <div class="sample-section">
-                    <div class="sample-buttons">
-                        <a href="SampleWBBScout.pdf" target="_blank">Sample WBB Analytics Scouting Report</a>
-                        <a href="HM_1Page.pdf" target="_blank">High-Major 1 Page Scout</a>
-                        <a href="Mid-Major_1Page.pdf" target="_blank">Mid-Major 1 Page Scout</a>
-                        <a href="Sample Pre-Game Report.pdf" target="_blank">Pre-Game Report</a>
-                        <a href="Lineup Report.pdf" target="_blank">Lineup Report</a>
-                        <a href="Individual Practice Reports.pdf" target="_blank">Sample Practice Reports</a>
-                        <a href="Out of Conference Report.pdf" target="_blank">Out of Conference Report</a>
-                        <a href="Game vs Practice Progress.pdf" target="_blank">Game vs. Practice Progress</a>
-                        <a href="12:13 Tournament Seed Projections.pdf" target="_blank">A10 Tournament Seed Projections</a>
-                    </div>
-                </div>
-
-                <h2>Certificates</h2>
-                <div class="sample-section">
-                    <div class="sample-buttons">
-                        <a href="DataAnalysis_Certificate.pdf" target="_blank">Data Analysis</a>
-                        <a href="BusinessAnalysis_Certificate.pdf" target="_blank">Business Analysis</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="portfolio-content tab-content" id="nba-projects">
-          <h2>NBA Projects</h2>
-          <p style="margin-top: -10px;">
-            This section features small NBA-focused research projects I’ve created to showcase my skills, knowledge, and passion for basketball analytics. Some were completed independenty and others as application materials for positions. The code for these projects can also be found on my <a href="https://github.com/glederer04">Github</a>.
-          </p>
-          <div class="project-grid">
-            <div class="project-tile">
-              <iframe src="PG_Salaries_P2.html"></iframe>
-              <a href="PG_Salaries_P2.html" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">Click to view full screen</span>
-                </a>
-            </div>
-            <div class="project-tile">
-              <iframe src="PG_Salaries_P1.html"></iframe>
-              <a href="PG_Salaries_P1.html" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">Click to view full screen</span>
-                </a>
-            </div>
-
-            <div class="project-tile">
-              <iframe 
-                src="https://www.youtube.com/embed/QFn75jdIsSg" 
-                title="2025-26 NBA MVP Predictions Project Video"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-              <a href="https://youtu.be/QFn75jdIsSg" target="_blank" class="project-link" title="Watch on YouTube">
-                <span style="font-size: 0.85em;">2025-26 NBA MVP Predictions<br>NBA Future Analytics Stars Application Challenge</span>
-              </a>
-            </div>
-
-            <div class="project-tile">
-              <iframe src="WNBA_FreeAgency.pdf#view=FitH" type="application/pdf"></iframe>
-              <a href="WNBA_FreeAgency.pdf" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">
-                  WNBA Free Agency<br>
-                  Free Agency Analysis
-                </span>
-              </a>
-            </div>
-
-            <div class="project-tile">
-              <iframe 
-                src="https://www.youtube.com/embed/_1MY1NA_R7E" 
-                title="Milwaukee Bucks Anti-Tanking Proposal Presentation"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-              <a href="https://youtu.be/_1MY1NA_R7E" target="_blank" class="project-link" title="Watch on YouTube">
-                <span style="font-size: 0.85em;">Milwaukee Bucks Anti-Tanking Presentation<br>Anti-Tanking Proposals from MIL's Perspective</span>
-              </a>
-            </div> 
-
-            <div class="project-tile">
-              <iframe src="Bucks_AntiTanking_Proposal.pdf"></iframe>
-              <a href="Bucks_AntiTanking_Proposal.pdf" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">
-                  Milwaukee Bucks Anti-Tanking Project<br>
-                  Anti-Tanking Proposals from MIL's Perspective
-                </span>
-              </a>
-            </div>
-
-            <div class="project-tile">
-              <iframe src="ShakiraAustin.pdf#view=FitH" type="application/pdf"></iframe>
-              <a href="ShakiraAustin.pdf" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">
-                  Shakira Austin Analysis<br>
-                  WNBA Player Evaluation
-                </span>
-              </a>
-            </div>
-              
-            <div class="project-tile">
-              <iframe src="Clippers_OnePage.pdf"></iframe>
-              <a href="Clippers_OnePage.pdf" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">
-                  LA Clippers One-Page Analysis<br>
-                  NBA Team Evaluation Project
-                </span>
-              </a>
-            </div>
-              
+  <main id="main-content">
+    <section class="hero section" id="top" aria-labelledby="hero-title">
+      <div class="hero-court-lines" aria-hidden="true"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Analytics for better basketball decisions</p>
+          <h1 id="hero-title">Turning basketball data into <em>decisions that travel.</em></h1>
+          <p class="hero-lede">I build models, reporting systems, and interactive tools that help coaches and front offices move from information to action.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
+            <a class="button button-quiet" href="Lederer_Resume.pdf" target="_blank" rel="noopener">View résumé <span aria-hidden="true">↗</span></a>
           </div>
+          <ul class="hero-links" aria-label="Contact and professional profiles">
+            <li><a href="mailto:gregoryled@yahoo.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/gregorylederer/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/glederer04" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
         </div>
-        <div class="portfolio-content tab-content" id="school-projects">
-          <h2>School Projects</h2>
-          <p style="margin-top: -10px;">
-            A variety of different projects I completed for school that I thought were worth sharing here.
-          </p>
-          <div class="project-grid">
 
-              <div class="project-tile">
-                  <iframe src="Championship_Group_5_Final.pdf#view=FitH" type="application/pdf"></iframe>
-                  <a href="Championship_Group_5_Final.pdf" target="_blank" class="project-link" title="Click to view full screen">
-                    <span style="font-size: 0.85em;">STOR 538 - Click to view full screen</span>
-                  </a>
-                </div>
-    
-              <div class="project-tile">
-              <iframe src="STOR320_Final.html"></iframe>
-              <a href="STOR320_Final.html" target="_blank" class="project-link" title="Click to open full screen">
-                <span style="font-size: 0.85em;">STOR 320 - Click to view full screen</span>
-                </a>
-            </div>
-            <div class="project-tile">
-              <iframe src="Lederer_STOR496.pdf#view=FitH" type="application/pdf"></iframe>
-              <a href="Lederer_STOR496.pdf" target="_blank" class="project-link" title="Click to view full screen">
-                <span style="font-size: 0.85em;">STOR 496 - Click to view full screen</span>
-              </a>
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img src="assets/images/profile/gregory-lederer.jpg" width="908" height="1200" alt="Gregory Lederer holding a basketball" fetchpriority="high">
+            <div class="portrait-tag">
+              <span class="status-dot" aria-hidden="true"></span>
+              Glen Mills, Pennsylvania
             </div>
           </div>
+          <div class="hero-note hero-note-top" aria-hidden="true">
+            <strong>01</strong>
+            <span>Model<br>the game</span>
+          </div>
+          <div class="hero-note hero-note-bottom" aria-hidden="true">
+            <strong>02</strong>
+            <span>Explain<br>the edge</span>
+          </div>
         </div>
-        <div class="resume-content tab-content" id="resume">
-            <h2>Resume</h2>
-            <iframe src="Lederer_Resume.pdf" width="100%" height="600px" style="border: none;"></iframe>
-            <!-- You can add more content here, including text and images -->
+      </div>
+
+      <div class="shell proof-grid" aria-label="Career highlights">
+        <div class="proof-item"><strong>1 of 50</strong><span>NBA Future Analytics Stars</span></div>
+        <div class="proof-item"><strong>~2,500</strong><span>Program applicants</span></div>
+        <div class="proof-item"><strong>100+</strong><span>Offensive sets analyzed</span></div>
+        <div class="proof-item"><strong>NBA + NCAA</strong><span>Basketball and business experience</span></div>
+      </div>
+    </section>
+
+    <section class="logo-band" aria-label="Organizations">
+      <div class="shell logo-band-inner">
+        <p>Experience shaped by</p>
+        <div class="organization-logos">
+          <div class="organization-logo"><img src="assets/images/logos/unc.svg" alt="UNC"></div>
+          <div class="organization-logo"><img src="assets/images/logos/miami-heat.svg" alt="Miami HEAT"></div>
+          <div class="organization-logo"><img src="assets/images/logos/sacramento-kings.svg" alt="Sacramento Kings"></div>
+          <div class="organization-logo"><img src="assets/images/logos/nba.svg" alt="NBA"></div>
+          <div class="organization-logo"><img src="assets/images/logos/umass.svg" alt="UMass"></div>
         </div>
+      </div>
+    </section>
+
+    <section class="section work-section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="section-index">01 / Selected work</p>
+            <h2 id="work-title">Built to be used,<br>not just viewed.</h2>
+          </div>
+          <p>Selected projects spanning player movement, practice performance, roster construction, and market valuation.</p>
+        </div>
+
+        <div class="featured-projects">
+          <article class="project-feature project-feature-dark" data-reveal>
+            <a class="project-media tpip-media" href="https://glederer04.github.io/Test-Transfer-Portal-Model/" target="_blank" rel="noopener noreferrer" aria-label="Open Transfer Portal Intelligence Platform">
+              <div class="project-number">01</div>
+              <img src="assets/images/projects/tpip-logo.png" width="1254" height="1254" alt="Transfer Portal Intelligence Platform logo" loading="lazy">
+              <span class="media-link" aria-hidden="true">Live platform ↗</span>
+            </a>
+            <div class="project-content">
+              <p class="project-kicker">Flagship platform / College basketball</p>
+              <h3>Transfer Portal Intelligence Platform</h3>
+              <p>A public analytics platform projecting player movement, transfer likelihood, destination conference tier, and post-transfer performance—with uncertainty communicated clearly.</p>
+              <ul class="tag-list" aria-label="Project skills">
+                <li>Predictive modeling</li><li>R</li><li>Product design</li><li>Data storytelling</li>
+              </ul>
+              <a class="text-link" href="https://glederer04.github.io/Test-Transfer-Portal-Model/" target="_blank" rel="noopener noreferrer">Explore the platform <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-feature project-feature-light" data-reveal>
+            <a class="project-media practice-media" href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank" rel="noopener noreferrer" aria-label="Open UNC Women's Basketball practice analytics demo">
+              <div class="project-number">02</div>
+              <img src="assets/images/projects/unc-practice.jpg" width="1250" height="150" alt="UNC Women's Basketball practice analytics dashboard banner" loading="lazy">
+              <div class="practice-ui" aria-hidden="true">
+                <div><span></span><span></span><span></span></div>
+                <div class="practice-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <span class="media-link" aria-hidden="true">Interactive demo ↗</span>
+            </a>
+            <div class="project-content">
+              <p class="project-kicker">Decision support / NCAA basketball</p>
+              <h3>UNC WBB Practice Analytics</h3>
+              <p>A desktop-and-mobile Shiny application centralizing practice stats, shot locations, player trends, and reporting for all six coaches.</p>
+              <ul class="tag-list" aria-label="Project skills">
+                <li>Shiny</li><li>R</li><li>App development</li><li>Coach workflows</li>
+              </ul>
+              <a class="text-link" href="https://gregorylederer.shinyapps.io/DEMO_UNC_WBB_24-25Prac/" target="_blank" rel="noopener noreferrer">Open the demo <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-feature project-feature-red" data-reveal>
+            <a class="project-media report-media" href="assets/documents/reports/WNBA_FreeAgency.pdf" target="_blank" rel="noopener" aria-label="Open WNBA Free Agency report">
+              <div class="project-number">03</div>
+              <img src="assets/images/projects/wnba-free-agency.jpg" width="850" height="1100" alt="First page of the 2026 WNBA free-agent market analysis" loading="lazy">
+              <span class="media-link" aria-hidden="true">View report ↗</span>
+            </a>
+            <div class="project-content">
+              <p class="project-kicker">Market strategy / WNBA</p>
+              <h3>2026 WNBA Free-Agent Market</h3>
+              <p>A CBA-aware valuation study identifying market compression, pricing signals, player value cases, and roster-building implications.</p>
+              <ul class="tag-list" aria-label="Project skills">
+                <li>Elastic net</li><li>XGBoost</li><li>Valuation</li><li>Executive reporting</li>
+              </ul>
+              <a class="text-link" href="assets/documents/reports/WNBA_FreeAgency.pdf" target="_blank" rel="noopener">Read the report <span>↗</span></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="more-work-heading" data-reveal>
+          <h3>More selected work</h3>
+          <a href="archive.html">Browse the full archive <span>→</span></a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-reveal>
+            <a class="card-media salary-art" href="PG_Salaries_P1.html" target="_blank" rel="noopener" aria-label="Open NBA point guard salary analysis">
+              <div class="salary-copy"><span>NBA / 2019–25</span><strong>What drives<br>point guard<br>value?</strong></div>
+              <div class="salary-plot" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </a>
+            <div class="card-body">
+              <p>NBA salary modeling</p>
+              <h3>Point Guard Value</h3>
+              <span>Research + predictive model</span>
+              <div class="card-links"><a href="PG_Salaries_P1.html" target="_blank" rel="noopener">Part 1 ↗</a><a href="PG_Salaries_P2.html" target="_blank" rel="noopener">Part 2 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <a class="card-media image-art" href="https://youtu.be/QFn75jdIsSg" target="_blank" rel="noopener noreferrer" aria-label="Watch 2025-26 NBA MVP predictions project">
+              <img src="assets/images/projects/nba-mvp.jpg" alt="NBA MVP predictions project video preview" loading="lazy">
+              <span class="play-button" aria-hidden="true">▶</span>
+            </a>
+            <div class="card-body">
+              <p>NBA Future Analytics Stars</p>
+              <h3>2025–26 MVP Predictions</h3>
+              <span>Modeling workflow + presentation</span>
+              <a class="card-arrow" href="https://youtu.be/QFn75jdIsSg" target="_blank" rel="noopener noreferrer" aria-label="Watch NBA MVP predictions">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <a class="card-media report-card-media" href="assets/documents/reports/Bucks_AntiTanking_Proposal.pdf" target="_blank" rel="noopener" aria-label="Open Milwaukee Bucks anti-tanking proposal">
+              <img src="assets/images/projects/bucks-antitanking.jpg" alt="Milwaukee Bucks anti-tanking proposal cover" loading="lazy">
+            </a>
+            <div class="card-body">
+              <p>League strategy</p>
+              <h3>Anti-Tanking Proposal</h3>
+              <span>Team-perspective policy analysis</span>
+              <a class="card-arrow" href="assets/documents/reports/Bucks_AntiTanking_Proposal.pdf" target="_blank" rel="noopener" aria-label="Open anti-tanking proposal">↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="shell">
+        <div class="section-heading section-heading-light" data-reveal>
+          <div>
+            <p class="section-index">02 / Experience</p>
+            <h2 id="experience-title">From the practice court<br>to the front office.</h2>
+          </div>
+          <p>Experience translating analytical work into tools, reports, and recommendations for real basketball and business decisions.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta"><span>2024–2026</span><div class="timeline-logo"><img src="assets/images/logos/unc.svg" alt="UNC"></div></div>
+            <div class="timeline-main">
+              <p>UNC Women’s Basketball</p>
+              <h3>Senior Basketball Analytics Assistant</h3>
+              <ul>
+                <li>Led end-to-end practice and scouting analytics supporting coaching-staff decisions.</li>
+                <li>Established and managed the program’s first student analyst team.</li>
+                <li>Built web tools used across the staff and an offensive-set metrics system covering 100+ sets.</li>
+              </ul>
+            </div>
+            <a href="https://goheels.com/sports/womens-basketball" target="_blank" rel="noopener noreferrer" class="timeline-link" aria-label="Visit UNC Women's Basketball">↗</a>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta"><span>Summer 2025</span><div class="timeline-logo"><img src="assets/images/logos/miami-heat.svg" alt="Miami HEAT"></div></div>
+            <div class="timeline-main">
+              <p>Miami HEAT / 601 Analytics</p>
+              <h3>Data Analytics Intern</h3>
+              <ul>
+                <li>Built a full-scale internal documentation site for analytics reports, models, pipelines, and code.</li>
+                <li>Supported an in-season attendance forecasting model using SQL and Python.</li>
+                <li>Co-led the winning intern project presentation to senior leadership.</li>
+              </ul>
+            </div>
+            <a href="https://www.nba.com/heat/" target="_blank" rel="noopener noreferrer" class="timeline-link" aria-label="Visit Miami HEAT">↗</a>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta"><span>Summer 2024</span><div class="timeline-logo"><img src="assets/images/logos/sacramento-kings.svg" alt="Sacramento Kings"></div></div>
+            <div class="timeline-main">
+              <p>Sacramento Kings</p>
+              <h3>Business Intelligence Intern</h3>
+              <ul>
+                <li>Developed Tableau dashboards with SQL and Snowflake for Golden 1 Center event analysis.</li>
+                <li>Built a season-ticket renewal model in R and deployed it through an interactive Shiny application.</li>
+              </ul>
+            </div>
+            <a href="https://www.nba.com/kings/" target="_blank" rel="noopener noreferrer" class="timeline-link" aria-label="Visit Sacramento Kings">↗</a>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta"><span>2022–2024</span><div class="timeline-logo"><img src="assets/images/logos/umass.svg" alt="UMass"></div></div>
+            <div class="timeline-main">
+              <p>UMass Men’s Basketball</p>
+              <h3>Student Manager / Analytics Assistant</h3>
+              <ul>
+                <li>Built interactive practice dashboards and delivered performance reporting to coaches and players.</li>
+                <li>Balanced analytics responsibilities with 30+ weekly hours of team operations.</li>
+              </ul>
+            </div>
+            <a href="https://umassathletics.com/sports/mens-basketball" target="_blank" rel="noopener noreferrer" class="timeline-link" aria-label="Visit UMass Men's Basketball">↗</a>
+          </article>
+        </div>
+
+        <details class="additional-experience" data-reveal>
+          <summary>Additional experience <span>View four earlier roles</span></summary>
+          <div class="additional-grid">
+            <article><div class="mini-logo"><img src="assets/images/logos/intellisport.png" alt="IntelliSport Analytics"></div><div><p>2023</p><h3>IntelliSport Analytics</h3><span>Summer Associate</span></div></article>
+            <article><div class="mini-logo"><img src="assets/images/logos/tbt.png" alt="The Basketball Tournament"></div><div><p>2023</p><h3>The Basketball Tournament</h3><span>Events Intern</span></div></article>
+            <article><div class="mini-logo mini-logo-text" aria-hidden="true">FC</div><div><p>2022–2023</p><h3>Full Court Analytics</h3><span>Basketball Analyst</span></div></article>
+            <article><div class="mini-logo mini-logo-text" aria-hidden="true">PV</div><div><p>2022</p><h3>Pioneer Valley Tip-Off</h3><span>Analytics / Game Day Operations</span></div></article>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="shell about-grid">
+        <div class="about-intro" data-reveal>
+          <p class="section-index">03 / About</p>
+          <h2 id="about-title">Curious about the game.<br>Serious about the work.</h2>
+          <p class="about-lede">I’m a UNC graduate in Statistics &amp; Analytics who likes working where basketball questions, data, and communication meet.</p>
+        </div>
+        <div class="about-copy" data-reveal>
+          <p>My work has moved between the coaching and business sides of basketball—from practice and scouting systems at UNC to business intelligence with the Sacramento Kings and analytics with the Miami HEAT.</p>
+          <p>I’m most energized by ambiguous problems: structuring the data, building the model or tool, and explaining the answer in a way that someone can actually use.</p>
+          <p>Outside of analytics, I’m a devoted Phillies fan and, despite growing up near Philadelphia, a New York Giants fan. The second choice requires more modeling to defend.</p>
+        </div>
+      </div>
+
+      <div class="shell skills-grid" data-reveal>
+        <article><span>01</span><h3>Model</h3><p>R, Python, machine learning, forecasting, classification, valuation</p></article>
+        <article><span>02</span><h3>Build</h3><p>SQL, Snowflake, Shiny, HTML/CSS/JavaScript, data pipelines</p></article>
+        <article><span>03</span><h3>Explain</h3><p>Tableau, executive reporting, visual storytelling, presentations</p></article>
+        <article><span>04</span><h3>Basketball</h3><p>Scouting analytics, practice reporting, player evaluation, roster strategy</p></article>
+      </div>
+
+      <div class="shell program-callout" data-reveal>
+        <div class="program-logo"><img src="assets/images/logos/nba.svg" alt="NBA"></div>
+        <div><p>NBA Future Analytics Stars · 2026</p><h3>Selected as one of 50 participants from approximately 2,500 applicants.</h3></div>
+        <p>Analyzed NBA optical tracking and skeletal pose data to study player movement and spatial interactions.</p>
+      </div>
+    </section>
+
+    <section class="section resume-section" id="resume" aria-labelledby="resume-title">
+      <div class="shell resume-card" data-reveal>
+        <div class="resume-copy">
+          <p class="section-index">04 / Résumé</p>
+          <h2 id="resume-title">The one-page version.</h2>
+          <p>Education, experience, projects, and technical skills—updated June 2026.</p>
+          <div class="resume-actions">
+            <a class="button button-primary button-light" href="Lederer_Resume.pdf" target="_blank" rel="noopener">Open résumé <span>↗</span></a>
+            <a class="button button-outline-light" href="Lederer_Resume.pdf" download>Download PDF <span>↓</span></a>
+          </div>
+        </div>
+        <div class="resume-sheet" aria-hidden="true">
+          <div class="resume-sheet-head"><strong>Gregory Lederer</strong><span>Basketball Analytics</span></div>
+          <i></i><i></i><i></i>
+          <div class="resume-columns"><span></span><span></span></div>
+          <i></i><i></i>
+          <div class="resume-stamp">1 PAGE</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-grid">
+        <p class="section-index">05 / Contact</p>
+        <div>
+          <h2 id="contact-title">Have a basketball question worth exploring?</h2>
+          <a href="mailto:gregoryled@yahoo.com">gregoryled@yahoo.com <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><strong>GL</strong><span>Numbers, basketball, and the space between.</span></div>
+      <div class="footer-links">
+        <a href="archive.html">Project archive</a>
+        <a href="https://www.linkedin.com/in/gregorylederer/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/glederer04" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+      <p>© <span data-year>2026</span> Gregory Lederer</p>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var tabs = document.querySelectorAll('.tab');
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function (event) {
-                event.preventDefault();
-                var tabId = this.getAttribute('href').substring(1);
-                var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
-                contents.forEach(function (content) {
-                    content.style.display = 'none';
-                });
-                document.getElementById(tabId).style.display = 'block';
-            });
-        });
-        window.location.hash = 'home';
-    });
-        
-    function toggleDropdown(dropdownId) {
-        var dropdownContent = document.getElementById(dropdownId);
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-        } else {
-            dropdownContent.style.display = "block";
-        }
-    }
-
-        document.querySelectorAll('.read-more-toggle').forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const content = toggle.nextElementSibling;
-                const arrow = toggle.querySelector('.arrow');
-                const expanded = toggle.classList.toggle('expanded');
-                content.style.display = expanded ? 'block' : 'none';
-            });
-        });
-        function switchTab(tabId) {
-            var contents = document.querySelectorAll('.homepage-content, .portfolio-content, .resume-content, .visual-content');
-            contents.forEach(function (content) {
-                content.style.display = 'none';
-            });
-            document.getElementById(tabId).style.display = 'block';
-        }
-
-            // --- Mobile hamburger + profile drawer ---
-    document.addEventListener('DOMContentLoaded', function () {
-        var menuToggle = document.querySelector('.menu-toggle');
-        var profileToggle = document.querySelector('.profile-toggle');
-        var tabsBar = document.querySelector('.tabs');
-        var profilePanel = document.querySelector('.profile');
-
-        if (menuToggle && tabsBar) {
-            menuToggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                tabsBar.classList.toggle('nav-open');
-            });
-        }
-
-        if (profileToggle && profilePanel) {
-            profileToggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                profilePanel.classList.toggle('profile-open');
-            });
-        }
-
-        // Close nav/profile if user taps anywhere in main content
-        document.addEventListener('click', function () {
-            if (tabsBar) {
-                tabsBar.classList.remove('nav-open');
-            }
-            if (profilePanel) {
-                profilePanel.classList.remove('profile-open');
-            }
-        });
-
-        // Prevent clicks inside profile from closing it immediately
-        if (profilePanel) {
-            profilePanel.addEventListener('click', function (e) {
-                e.stopPropagation();
-            });
-        }
-    });
-</script>
-
+  </footer>
 </body>
 </html>
