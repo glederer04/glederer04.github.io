@@ -270,6 +270,24 @@ button, input { font: inherit; }
 .project-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(255,255,255,.14); border-radius: inherit; pointer-events: none; }
 .project-number { position: absolute; top: 28px; left: 30px; z-index: 2; color: rgba(255,255,255,.6); font-family: var(--font-mono); font-size: 10px; }
 .media-link { position: absolute; right: 25px; bottom: 24px; z-index: 2; padding: 8px 12px; border-radius: 999px; background: rgba(7,26,46,.76); color: #fff; backdrop-filter: blur(8px); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.rotation-lab-media { padding: 66px 34px 78px; background: #e7edf3; }
+.rotation-lab-media::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 82% 18%, rgba(239,126,54,.22), transparent 27%), linear-gradient(rgba(7,26,46,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(7,26,46,.04) 1px, transparent 1px); background-size: auto, 34px 34px, 34px 34px; }
+.rotation-lab-media::after { border-color: rgba(7,26,46,.1); }
+.rotation-lab-media .project-number { color: rgba(7,26,46,.58); }
+.rotation-browser { position: relative; z-index: 1; width: min(100%, 660px); overflow: hidden; border: 1px solid rgba(7,26,46,.17); border-radius: 12px; background: #fff; box-shadow: 0 28px 65px rgba(7,26,46,.23); transform: rotate(-1.25deg); transition: transform .35s ease, box-shadow .35s ease; }
+.rotation-lab-media:hover .rotation-browser { transform: rotate(0) translateY(-4px); box-shadow: 0 34px 75px rgba(7,26,46,.28); }
+.rotation-browser-bar { height: 32px; padding: 0 13px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #dce3e9; color: #71808d; font-family: var(--font-mono); font-size: 8px; letter-spacing: .02em; }
+.rotation-browser-bar i { width: 7px; height: 7px; border-radius: 50%; background: #c9d2d9; }
+.rotation-browser-bar i:first-child { background: #ef7e36; }
+.rotation-browser-bar span { margin-left: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rotation-browser img { width: 100%; height: auto; display: block; transition: transform .35s ease; }
+.rotation-lab-media:hover .rotation-browser img { transform: scale(1.012); }
+.rotation-proof { position: absolute; left: 34px; right: 118px; bottom: 25px; z-index: 2; display: flex; gap: 6px; }
+.rotation-proof span { padding: 7px 9px; border: 1px solid rgba(7,26,46,.12); border-radius: 999px; background: rgba(255,255,255,.74); color: #526878; backdrop-filter: blur(8px); font-family: var(--font-mono); font-size: 7px; letter-spacing: .07em; text-transform: uppercase; }
+.project-feature-rotation .project-content { background: #fffdf9; }
+.project-feature-rotation .project-kicker { color: #c35f26; }
+.project-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.text-link-secondary { color: #647684; }
 .tpip-media { background: #04152d; }
 .tpip-media::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(43,124,235,.22), transparent 42%), linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: auto, 40px 40px, 40px 40px; }
 .tpip-media img { position: relative; z-index: 1; width: min(46%, 250px); border-radius: 25%; box-shadow: 0 25px 60px rgba(0,0,0,.35); transition: transform .35s ease; }
@@ -494,6 +512,8 @@ button, input { font: inherit; }
   .project-feature, .project-feature:nth-child(even) { grid-template-columns: 1fr; }
   .project-feature:nth-child(even) .project-media { order: 0; }
   .project-media { min-height: 420px; }
+  .rotation-lab-media { padding: 58px 28px 72px; }
+  .rotation-proof { left: 28px; }
   .project-content { min-height: 410px; }
   .project-grid { grid-template-columns: 1fr 1fr; }
   .project-card:last-child { grid-column: 1 / -1; }
@@ -532,6 +552,10 @@ button, input { font: inherit; }
   .organization-logo img { inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); }
   .section-heading h2, .about-intro h2, .resume-copy h2 { font-size: clamp(2.6rem, 13vw, 4rem); }
   .project-media { min-height: 335px; }
+  .rotation-lab-media { min-height: 340px; padding: 56px 20px 75px; }
+  .rotation-proof { left: 20px; right: 20px; bottom: 20px; flex-wrap: wrap; }
+  .rotation-proof span { font-size: 6px; }
+  .rotation-lab-media .media-link { display: none; }
   .project-content { min-height: 0; padding: 38px 28px 42px; }
   .project-content h3 { font-size: 2.35rem; }
   .repo-feature-copy { padding: 40px 28px 43px; }
